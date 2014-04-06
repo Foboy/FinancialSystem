@@ -4,7 +4,7 @@
   */
 
 
-define('SURL', 'http://localhost/GoGoTown/trunk/crm/');
-define('URL', 'http://localhost/GoGoTown/trunk/crm/index.php?url=');
+define('SURL', 'http://localhost/FinancialSystem/');
+define('URL', 'http://localhost/FinancialSystem/index.php?url=');
 
 
