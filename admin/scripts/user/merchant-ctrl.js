@@ -163,7 +163,7 @@ function AddUserAccountCtrl($scope, $http, $location, $routeParams, $resturls) {
     $scope.AddUserAccount = function (data) {
         if ($scope.AddUserAccountForm.$valid) {
             console.log(data);
-            $http.post($resturls["AddUserAccount"], { user_type: data.Type, user_name:data.Name ,user_account:data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
+            $http.post($resturls["AddUserAccount"], { user_type: 5, user_name:data.Name ,user_account:data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
                 if (result.Error == 0) {
                     alert("success");
                     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);

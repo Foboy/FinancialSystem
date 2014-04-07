@@ -15,7 +15,7 @@ class user extends Controller
 	 * crm客户端登陆
 	 * parms user_name user_password user_type=1/3
 	 */
-    public  function  crmlogin()
+    public  function  finacillogin()
     {
     	$result = new DataResult ();
     	
@@ -25,7 +25,7 @@ class user extends Controller
     	$result->Data=$login_successful;
     	if ($login_successful) {
     		
-    		if($_SESSION ['user_type']==2)
+    		if($_SESSION ['user_type']!=4 and $_SESSION ['user_type']!=5)
     		{
     			$result->Error = ErrorType::Accessdenied;
     			print json_encode ( $result ) ;
@@ -42,37 +42,7 @@ class user extends Controller
     	
     	print json_encode ( $result ) ;
     }
-    /*
-     * app客户端登陆
-    * parms user_name user_password user_type=2
-    */
-    public  function  applogin()
-    {
-    	$result = new DataResult ();
-
-    	$login_model = $this->loadModel('Users');
-    	$login_successful = $login_model->login();
-    	$result->Data=$login_successful;
-    	if ($login_successful) {
-    		if($_SESSION ['user_type']!=2)
-    		{
-    			$result->Error = ErrorType::Accessdenied;
-    			print json_encode ( $result ) ;
-    			return ;
-    		}else 
-    		{
-    		$result->Data=$_SESSION ['user_type'];
-    		
-    		$result->Error = ErrorType::Success;
-    		}
-    	
-    	} else {
-    		$result->Error = ErrorType::LoginFailed;
-
-    	}
-    	
-    	print  json_encode ( $result ) ;
-    }
+  
 
     function logout()
     {
@@ -157,5 +127,25 @@ class user extends Controller
     	$result = $user_model->updateUserState($_POST["state"],$_POST["user_id"]);
     	$result->Error = ErrorType::Success;
     	print  json_encode ( $result ) ;
+    }
+    /*
+     * 获取财务APP账号列表
+    * parms: name user_type 1 ADMIN 2 APP 3 STAFF 4 financialadmin 5 financialstaff
+    */
+    public function searchFinancialsAcount() {
+    	$result = new DataResult ();
+    
+    	if (! isset ( $_POST ['name'] )) {
+    		$result->Error = ErrorType::RequestParamsFailed;
+    		print json_encode ( $result );
+    		return ;
+    	}
+    	
+    	$user_model = $this->loadModel('Users');
+    
+    	$result = $user_model->search ($_POST ['name'],0,4);
+    	$result->Error = ErrorType::Success;
+    
+    	print  json_encode ( $result );
     }
 }
