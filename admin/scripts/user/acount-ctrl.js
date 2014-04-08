@@ -1,4 +1,4 @@
-﻿function AuthorityManagementCtrl($scope, $http, $location, $routeParams, $resturls) {
+function AcountCtrl($scope, $http, $location, $routeParams, $resturls) {
     var $parent = $scope.$parent;
     $scope.sorts = $routeParams.sorts;
     if (!$scope.sorts) {
@@ -8,31 +8,16 @@
     $scope.loadUserAccountSortList = function (pageIndex) {
         var pageSize = 1;
         if (pageIndex == 0) pageIndex = 1;
-        switch ($scope.sorts) {
-            //店员
-            case 'clerk':
-                $http.post($resturls["LoadUserAccountList"], { name: '', pageindex: pageIndex - 1, pagesize: pageSize, user_type: 3 }).success(function (result) {
-                    if (result.Error == 0) {
-                        $scope.clerks = result.Data;
-                        $parent.pages = utilities.paging(result.totalcount, pageIndex, pageSize, '#permissions/' + $scope.sorts + '/{0}');
-                    } else {
-                        $scope.clerks = [];
-                        $parent.pages = utilities.paging(0, pageIndex, pageSize);
-                    }
-                });
-                break;
-            case 'cashier': //收银员(手机app)
-                $http.post($resturls["LoadUserAccountList"], { name: '', pageindex: pageIndex - 1, pagesize: pageSize, user_type: 2 }).success(function (result) {
-                    if (result.Error == 0) {
-                        $scope.cashiers = result.Data;
-                        $parent.pages = utilities.paging(result.totalcount, pageIndex, pageSize, '#permissions/' + $scope.sorts + '/{0}');
-                    } else {
-                        $scope.cashiers = [];
-                        $parent.pages = utilities.paging(0, pageIndex, pageSize);
-                    }
-                });
-                break;
-        }
+        
+        $http.post($resturls["LoadUserAccountList"], { name: '', pageindex: pageIndex - 1, pagesize: pageSize, user_type: 5 }).success(function (result) {
+            if (result.Error == 0) {
+                $scope.clerks = result.Data;
+                $parent.pages = utilities.paging(result.totalcount, pageIndex, pageSize, '#permissions/' + $scope.sorts + '/{0}');
+            } else {
+                $scope.clerks = [];
+                $parent.pages = utilities.paging(0, pageIndex, pageSize);
+            }
+        });
     }
     //账户列表数据出初始化
     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
@@ -57,11 +42,11 @@
         data.State = data.State == 1 ? 2 : 1;
         $http.post($resturls["UpdateUserState"], { user_id: data.ID, state: data.State }).success(function (result) {
             if (result.Error == 0) {
-                alert("success");
+                alert(result.ErrorMessage);
                 $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
             }
             else {
-                alert("error");
+                alert(result.ErrorMessage);
                 $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
             }
         });
@@ -73,7 +58,7 @@ function AddUserAccountCtrl($scope, $http, $location, $routeParams, $resturls) {
     $scope.AddUserAccount = function (data) {
         if ($scope.AddUserAccountForm.$valid) {
             $scope.showerror = false;
-            $http.post($resturls["AddUserAccount"], { user_type: data.Type, user_name: data.Name, user_account: data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
+            $http.post($resturls["AddUserAccount"], { user_type: 5, user_name: data.Name, user_account: data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
                 if (result.Error == 0) {
                     alert("success");
                     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
@@ -91,7 +76,7 @@ function AddUserAccountCtrl($scope, $http, $location, $routeParams, $resturls) {
     $scope.EditUserAccount = function (data) {
         if ($scope.AddUserAccountForm.$valid) {
             $scope.showerror = false;
-            $http.post($resturls["UpdateUserAccount"], { user_type: data.Type, user_name: data.Name, user_account: data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
+            $http.post($resturls["UpdateUserAccount"], { user_type: 5, user_name: data.Name, user_account: data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
                 if (result.Error == 0) {
                     alert("success");
                     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
