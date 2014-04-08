@@ -27,6 +27,7 @@ class user extends Controller
     		
     		if($_SESSION ['user_type']!=4 and $_SESSION ['user_type']!=5)
     		{
+    			$result->ErrorMessage=FEEDBACK_USER_ACCESSDENIED;
     			$result->Error = ErrorType::Accessdenied;
     			print json_encode ( $result ) ;
     			return ;
@@ -37,6 +38,7 @@ class user extends Controller
     		$result->Error = ErrorType::Success;
     		}
     	} else {
+    		$result->ErrorMessage=FEEDBACK_LOGIN_FAILED;
     		$result->Error = ErrorType::LoginFailed;
     	}
     	
@@ -143,7 +145,7 @@ class user extends Controller
     	
     	$user_model = $this->loadModel('Users');
     
-    	$result = $user_model->search ($_POST ['name'],0,4);
+    	$result = $user_model->search ($_POST ['name'],0,5);
     	$result->Error = ErrorType::Success;
     
     	print  json_encode ( $result );

@@ -202,7 +202,8 @@ define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "你的账号没有被激活");
 define("FEEDBACK_PASSWORD_WRONG", "密码错误");
 define("FEEDBACK_USER_DOES_NOT_EXIST", "用户不存在");
 // The "login failed"-message is a security improved feedback that doesn't show a potential attacker if the user exists or not
-define("FEEDBACK_LOGIN_FAILED", "登陆失败");
+define("FEEDBACK_LOGIN_FAILED", "错误:用户名不存在或者密码不正确");
+define("FEEDBACK_USER_ACCESSDENIED", "错误:无权访问");
 define("FEEDBACK_USERNAME_FIELD_EMPTY", "用户名为空");
 define("FEEDBACK_PASSWORD_FIELD_EMPTY", "密码为空");
 define("FEEDBACK_USERNAME_SAME_AS_OLD_ONE", "你的用户似乎没变，请重新输入");

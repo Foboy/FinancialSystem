@@ -19,6 +19,10 @@
 .font16{
 	font-size: 16px;
 }
+.font14{
+	font-size: 14px;
+}
+
 .font500{
 	font-weight: 400;
 }
@@ -29,6 +33,26 @@
 	margin-top: 7px;
 	margin-right: 7px;
 }
+.margin_bot{
+	margin-bottom: 15px;
+}
+.margin_bot a{
+	cursor: pointer;;
+}
+.padding_null{
+	padding: 0px;
+}
+.btn-group-top{
+	margin-top: 8px;
+}
+.btn-group-right{
+	margin-right: 7px;
+}
+.lable-text{
+	text-align: left;;
+}
+
+
 
 /*自定义model框*/
 .modal_radius{
@@ -50,6 +74,9 @@
 }
 .close_postion{
 	margin-right: 8px;
+}
+.canlepadding{
+	padding: 0px;
 }
 
 
@@ -138,6 +165,22 @@ transition: 0.25s;
 }
 .but-header{
 	margin-top: 20px;
+}
+.mer_padding{
+	padding: 20px 20px 10px 20px
+}
+.mer_lable{
+	padding: 7px 15px 0 15px;
+}
+
+/*dashborad*/
+.searchpo{
+	position: relative;;
+}
+
+/*会员等级设置*/
+.close_btn{
+	margin-left: -18px;
 }
 
 

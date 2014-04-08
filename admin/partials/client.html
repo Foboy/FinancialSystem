@@ -10,30 +10,32 @@
         <div class="col-lg-12">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li ng-class="sorts=='gogocustomer'?'active':''"><a ng-href="#/client/gogocustomer">GOGO客户</a></li>
-                <li ng-class="sorts=='owncustomer'?'active':''"><a ng-href="#/client/owncustomer">自有客户</a></li>
-                <li class="navbar-right">
-                    <form class="form-inline">
-                        <div class="form-group">
-                        <div class="input-group custom-search-form">
-                                <input type="text" class="form-control input-sm"  placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn_left btn btn-default btn-sm " type="button" ng-click="SerachCustomerList()">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                        </div>
+                <li ng-class="sorts=='gogocustomer'?'active':''"><a ng-href="#/client/gogocustomer/">GOGO客户</a></li>
+                <li ng-class="sorts=='owncustomer'?'active':''"><a ng-href="#/client/owncustomer/">自有客户</a></li>
+                <li class="searchpo navbar-right col-sm-4">
+                    <!--<div class="input-group custom-search-form pull-left col-md-8">
+                        <input type="text" class="form-control input-sm"  placeholder="Search...">
+                        <span class="input-group-btn">
+                        <button class="btn_left btn btn-default btn-sm " type="button" ng-click="SerachCustomerList()"><i class="fa fa-search"></i></button>
+                        </span>
                     </div>
-                        <button type="button" class="btn btn-primary btn-sm btn_left"  ng-click="ShowAddOwnCustomerModal()">添加客户</button>
-                    </form> 
+                    <button type="button" class="btn btn-primary btn-sm btn_left pull-right"  ng-click="ShowAddOwnCustomerModal()">添加客户</button>-->
+                    <div class="col-sm-8">
+                        <input type="text" ng-show="false" ng-model="text"/>
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control input-sm" ng-model="parameters" placeholder="Search...">
+                            <span class="input-group-btn">
+                            <button class="btn_left btn btn-default btn-sm " type="button" ng-click="SearchClientSortList(parameters)"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>  
+                    </div>
+                    <div class="col-sm-4">
+                             <button type="button" class="btn btn-primary btn-sm btn_left pull-right"  ng-click="ShowAddOwnCustomerModal()">添加客户</button>
+                    </div>
                 </li>
             </ul>
-
-
-
             <!-- Tab panes -->
             <div class="tab-content">
-                    
                 <!--自有客户显示区域-->
                 <div class="panel-body" ng-show="sorts=='owncustomer'?'true':'false'">
                     <div class="table-responsive">
@@ -45,6 +47,7 @@
                                     <th>年龄</th>
                                     <th>性别</th>
                                     <th>手机号</th>
+                                    <th>会员等级</th>
                                     <th>备注</th>
                                     <th></th>
                                 </tr>
@@ -60,6 +63,7 @@
                                     </td>
                                     <td class="center">{{ownclient.Phone}}
                                     </td>
+                                    <td class="center"></td>
                                     <td class="center">{{ownclient.Remark}}
                                     </td>
                                     <td><a ng-click="ShowAddOwnCustomerModal(ownclient,$event)">编辑</a>|<a ng-click="ShowClientDetailModal()">详情</a></td>
@@ -78,6 +82,7 @@
                                     <th>姓名</th>
                                     <th>年龄</th>
                                     <th>性别</th>
+                                    <th>会员等级</th>
                                     <th>联系方式</th>
                                     <th>所在地</th>
                                     <th></th>
@@ -92,12 +97,13 @@
                                     </td>
                                     <td>{{gogoclient.Sex==1?'男':'女'}}
                                     </td>
+                                    <td class="center"></td>
                                     <td class="center">{{gogoclient.Phone}}
                                     </td>
                                     <td class="center">X
                                     </td>
                                     <td class="center">
-                                        <a href="javascript:void(0);">发送信息</a>
+                                        <a ng-click="ShowSendMessageModal(gogoclient)">发送信息</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -124,4 +130,5 @@
 
 <div ng-include="'partials/client/addowncustomer-modal.html'"></div>
 <div ng-include="'partials/client/customerdetail-modal.html'"></div>
+<div ng-include="'partials/client/sendmessage-modal.html'"></div>
 

@@ -7,6 +7,7 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
         .when('/mebershiplevel', { template: '', controller: function () { } })
         .when('/permissions/:sorts?/:pageIndex?', { template: '', controller: function () { } })
         .when('/client/:sorts?/:pageIndex?/:parameters?', { template: '', controller: function () { } })
+        .when('/maintenance/:pageIndex?', { template: '', controller: function () { } })
         .otherwise({ redirectTo: '/home' });
     $stateProvider
          .state("main", {
@@ -16,14 +17,21 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
          .state('main.home', {
              url: '/home',
              templateUrl: 'partials/home.html',
-             controller: function () { }
+             controller: function () { 
+                    setTimeout(function() {
+
+                        loadflotpanel();
+                    }, 1000);
+             }
          })
          .state('main.user', { url: '/user*path', templateUrl: 'partials/userinfo.html', controller: function () { } })
          .state('main.client', { url: '/client*path', templateUrl: 'partials/client.html', controller: ClientMainCtrl })
          .state('main.seacustomer', { url: '/seacustomer*path', templateUrl: 'partials/seacustomer.html', controller: SeaCustomerMainCtrl })
          .state('main.merchantinfo', { url: '/merchantinfo*path', templateUrl: 'partials/merchantinfo.html', controller: MerchantInfoMainCtrl })
          .state('main.mebershiplevel', { url: '/mebershiplevel*path', templateUrl: 'partials/mebershiplevel.html', controller: MemberShipLevelCtrl })
-         .state('main.permissions', { url: '/permissions*path', templateUrl: 'partials/authoritymanagement.html', controller: AuthorityManagementCtrl });
+         .state('main.permissions', { url: '/permissions*path', templateUrl: 'partials/authoritymanagement.html', controller: AuthorityManagementCtrl })
+         .state('main.maintenance', { url: '/maintenance*path', templateUrl: 'partials/maintenance.html', controller: MaintenanceCtrl });
+         
 
     $httpProvider.interceptors.push(function () {
         return {
