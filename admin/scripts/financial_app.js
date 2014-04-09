@@ -1,4 +1,4 @@
-﻿angular.module('gogotowncrm', ['ngRoute', 'ui.router', 'ngRestUrls']).
+﻿angular.module('gogotownfinancial', ['ngRoute', 'ui.router', 'ngRestUrls']).
 config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', '$resturls', function ($provide, $httpProvider, $routeProvider, $stateProvider, $urlRouterProvider, $resturls) {
     $routeProvider
         .when('/user', { template: '', controller: function () { } })
@@ -10,25 +10,21 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
         .when('/maintenance/:pageIndex?', { template: '', controller: function () { } })
         .otherwise({ redirectTo: '/home' });
     $stateProvider
-         .state("main", {
-             url: "",
-             templateUrl: 'partials/main.html'
-         })
-         .state('main.home', {
+         .state('home', {
              url: '/home',
              templateUrl: 'partials/home.html',
              controller: function () { 
                     setTimeout(function() {
 
-                        loadflotpanel();
+                        //loadflotpanel();
                     }, 1000);
              }
          })
-         .state('main.user', { url: '/user*path', templateUrl: 'partials/userinfo.html', controller: function () { } })
-         .state('main.client', { url: '/client*path', templateUrl: 'partials/client.html', controller: ClientMainCtrl })
-         .state('main.maintenance', { url: '/maintenance*path', templateUrl: 'partials/maintenance.html', controller: MaintenanceCtrl })
-         .state('main.lakala', { url: '/lakala*path', templateUrl: 'partials/lakala.html', controller: LakalaCtrl })
-         .state('main.permissions', { url: '/permissions*path', templateUrl: 'partials/authoritymanagement.html', controller: AcountCtrl });
+         .state('user', { url: '/user*path', templateUrl: 'partials/userinfo.html', controller: function () { } })
+         .state('client', { url: '/client*path', templateUrl: 'partials/client.html', controller: ClientMainCtrl })
+         .state('maintenance', { url: '/maintenance*path', templateUrl: 'partials/maintenance.html', controller: MaintenanceCtrl })
+         .state('lakala', { url: '/lakala*path', templateUrl: 'partials/lakala.html', controller: LakalaCtrl })
+         .state('permissions', { url: '/permissions*path', templateUrl: 'partials/authoritymanagement.html', controller: AcountCtrl });
          
          
 
