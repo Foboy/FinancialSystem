@@ -1,13 +1,8 @@
 ﻿angular.module('gogotownfinancial', ['ngRoute', 'ui.router', 'ngRestUrls']).
 config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', '$resturls', function ($provide, $httpProvider, $routeProvider, $stateProvider, $urlRouterProvider, $resturls) {
     $routeProvider
-        .when('/user', { template: '', controller: function () { } })
-        .when('/seacustomer/:pageIndex?', { template: '', controller: function () { } })
-        .when('/merchantinfo', { template: '', controller: function () { } })
-        .when('/mebershiplevel', { template: '', controller: function () { } })
         .when('/permissions/:sorts?/:pageIndex?', { template: '', controller: function () { } })
         .when('/client/:sorts?/:pageIndex?/:parameters?', { template: '', controller: function () { } })
-        .when('/maintenance/:pageIndex?', { template: '', controller: function () { } })
         .otherwise({ redirectTo: '/home' });
     $stateProvider
          .state('home', {
@@ -20,10 +15,13 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
                     }, 1000);
              }
          })
-         .state('user', { url: '/user*path', templateUrl: 'partials/userinfo.html', controller: function () { } })
          .state('client', { url: '/client*path', templateUrl: 'partials/client.html', controller: ClientMainCtrl })
-         .state('maintenance', { url: '/maintenance*path', templateUrl: 'partials/maintenance.html', controller: MaintenanceCtrl })
          .state('lakala', { url: '/lakala*path', templateUrl: 'partials/lakala.html', controller: LakalaCtrl })
+         .state('shop', { url: '/shop*path', templateUrl: 'partials/client/shop.html', controller: ShopCtrl })
+         .state('sp_statistics', { url: '/sp_statistics*path', templateUrl: 'partials/client/shop-statistics.html', controller: ShopStatisticsCtrl })
+         .state('customer', { url: '/customer*path', templateUrl: 'partials/customer.html', controller: CustomerCtrl })
+         .state('cus_statistics', { url: '/cus_statistics*path', templateUrl: 'partials/customer/customer-statistics.html', controller: CustomerStatisticsCtrl })
+         .state('total_statistics', { url: '/total_statistics*path', templateUrl: 'partials/total_statistics.htm', controller: TotalStatisticsCtrl })
          .state('permissions', { url: '/permissions*path', templateUrl: 'partials/authoritymanagement.html', controller: AcountCtrl });
          
          
