@@ -1316,9 +1316,6 @@ body > .header .logo .icon {
   float: left;
   cursor: default;
 }
-.box .box-header a {
-  color: #444;
-}
 .box .box-header > .box-tools {
   padding: 5px 10px 5px 5px;
 }

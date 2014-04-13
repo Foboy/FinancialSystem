@@ -1,3 +1,23 @@
+/*公共*/
+.graycolor{
+  color: #888;
+}
+.margin_top{
+  margin-top: 15px;
+}
+.margin_left{
+  margin-left: 15px;
+}
+a{
+  cursor: pointer;
+}
+.padding_null{
+  padding: 0px;
+}
+.padding_rightnull{
+  padding-right: 0px;
+}
+
 @font-face {
   font-style: normal;
   font-weight: 300;
@@ -30,4 +50,12 @@
   font-family: 'Kaushan Script';
   font-style: normal;
   font-weight: 400;
+}
+
+
+/*登陆*/
+.footer_info {
+    height: 40px;
+    margin-top: 60px;
+    text-align: center;
 }
