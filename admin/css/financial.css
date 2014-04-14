@@ -2,6 +2,9 @@
 .graycolor{
   color: #888;
 }
+.whitecolor{
+  color: #fff;
+}
 .margin_top{
   margin-top: 15px;
 }
@@ -11,11 +14,15 @@
 a{
   cursor: pointer;
 }
+
 .padding_null{
   padding: 0px;
 }
 .padding_rightnull{
   padding-right: 0px;
+}
+.padding_leftnull{
+  padding-left: 0px;
 }
 .titlefont{
   font-weight: 200;
