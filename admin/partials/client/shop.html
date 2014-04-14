@@ -1,38 +1,36 @@
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
-	<h1>商户转账记录</h1>
+	<h1>
+		商户转账记录
+		<small></small>
+	</h1>
+
 </div>
 
 <!-- Main content -->
 <div class="content">
+<form name="shop">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box box-primary collapsed-box">
-				<div class="box-header form-group">
-					<div class="margin_top padding_rightnull col-sm-7">
-						<div class="input-group pull-left">
-	                        <input type="text" placeholder="模糊查询(商家姓名，客户名称，手机号，昵称)"  class="form-control " name="table_search">
-	                        <div class="input-group-btn">
-	                            <button class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
-	                        </div>
-	                    </div>
-	                </div>
-
-	                <div class="margin_top padding_null col-sm-3" >
-	                	<a title="高级查询" data-toggle="tooltip" data-widget="collapse" class="graycolor margin_left" data-original-title="高级查询">高级查询</a>	
-	                </div>
-
-	                <div class="margin_top col-sm-2">
-                    	<div class="input-group pull-right">
-							<button class="btn btn-success btn-flat">
-								<i class="fa fa-download"></i>
-								导出EXCEL
-							</button>
-						</div>
-                    </div>
+				<div class="box-header">
+					<h3 class="box-title"></h3>
+					<div class="box-tools pull-left">
+					<div class="input-group">
+                                            <input type="text" ng-model="shopinfo.skey" placeholder="模糊查询(商家姓名，客户名称，手机号，昵称)" style="width: 500px;" class="form-control " name="table_search">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" ng-click="SearchShopBills()"><i class="fa fa-search"></i></button>
+                                                <button title="高级查询" data-toggle="tooltip" data-widget="collapse" class="btn btn-info" data-original-title="高级查询">高级查询</button>
+                                            </div>
+                                        </div>
+                                        
+				
+						
+					
+					</div>
 				</div>
-
+				
 				<!-- /.box-header -->
 				<div class="box-body" style="display:none;">
 					<div class="row">
@@ -41,18 +39,12 @@
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									商圈范围
+									{{csr_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">金牛</a>
-									</li>
-									<li>
-										<a href="#">万达</a>
-									</li>
-									<li>
-										<a href="#">天府广场</a>
+									<li ng-repeat="sr in ShopRange">
+										<a href="#" ng-click="ChooseShopRange(sr)">{{sr.name}}</a>
 									</li>
 								</ul>
 							</div>
@@ -61,19 +53,14 @@
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									消费类型
+									{{cct_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">服饰</a>
+										<li ng-repeat="ct in Consumptiontype">
+										<a href="#" ng-click="ChooseConsumptiontype(ct)">{{ct.name}}</a>
 									</li>
-									<li>
-										<a href="#">箱包</a>
-									</li>
-									<li>
-										<a href="#">3C数码</a>
-									</li>
+									
 
 								</ul>
 							</div>
@@ -82,15 +69,12 @@
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									支付方式
+									{{cpt_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">刷卡支付</a>
-									</li>
-									<li>
-										<a href="#">GO币支付</a>
+									<li ng-repeat="pt in PayType">
+										<a href="#" ng-click="ChoosePayType(pt)">{{pt.name}}</a>
 									</li>
 
 
@@ -107,7 +91,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
-									<input type="text" id="reservation" class="form-control ">
+									<input type="text" id="reservation" ng-model="shopinfo.daterange" class="form-control ">
 								</div>
 							</div>
 						</div>
@@ -119,7 +103,7 @@
 									<div class=" form-group form-horizontal">
 										<label class="col-xs-6">GO币金额区间</label>
 										<div class="input-group col-xs-6">
-											<input type="text" class="form-control ">
+											<input type="text" ng-model="shopinfo.GO1" class="form-control ">
 										</div>
 
 									</div>
@@ -129,7 +113,7 @@
 
 										<label class="col-xs-4">至</label>
 										<div class="input-group col-xs-8">
-											<input type="text" class="form-control ">
+											<input type="text" ng-model="shopinfo.GO2" class="form-control ">
 										</div>
 									</div>
 								</div>
@@ -149,7 +133,7 @@
 									<div class=" form-group form-horizontal">
 										<label class="col-xs-6">刷卡金额区间</label>
 										<div class="input-group col-xs-6">
-											<input type="text" class="form-control ">
+											<input type="text" ng-model="shopinfo.cash1" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/" class="form-control ">
 										</div>
 
 									</div>
@@ -159,7 +143,7 @@
 
 										<label class="col-xs-4">至</label>
 										<div class="input-group col-xs-8">
-											<input type="text" class="form-control ">
+											<input type="text" ng-model="shopinfo.cash2" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/" class="form-control ">
 										</div>
 									</div>
 								</div>
@@ -190,6 +174,7 @@
 
 		</div>
 	</div>
+	</form>
 	<div class="row">
 		<div class="col-xs-12">
 
@@ -342,27 +327,9 @@
 				<!-- /.box-body -->
 				<div class="box-footer clearfix">
 					<ul class="pagination pagination-sm no-margin pull-right">
-						<li>
-							<a href="#">«</a>
-						</li>
-						<li class="active">
-							<a href="#">1</a>
-						</li>
-						<li>
-							<a href="#">2</a>
-						</li>
-						<li>
-							<a href="#">3</a>
-						</li>
-						<li>
-							<a href="#">4</a>
-						</li>
-						<li>
-							<a href="#">5</a>
-						</li>
-						<li>
-							<a href="#">»</a>
-						</li>
+						         <li ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}"><<</a></li>
+                <li ng-class="{{page.active}}?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+                <li ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">>></a></li>
 					</ul>
 				</div>
 			</div>
