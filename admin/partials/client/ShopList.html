@@ -1,0 +1,253 @@
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+	<h1>商家列表</h1>
+</div>
+
+<!-- Main content -->
+<div class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-primary collapsed-box">
+				<div class="box-header form-group">
+
+					<div class="margin_top padding_rightnull col-sm-7">
+						<div class="input-group pull-left" >
+                            <input type="text" placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                            </div>
+                    	</div>
+                    </div>
+
+
+ 					<div class="margin_top padding_null col-sm-3" >
+                		<a title="高级查询" data-toggle="tooltip" data-widget="collapse" class="graycolor margin_left" data-original-title="高级查询">高级查询</a>
+                    </div>
+
+
+				</div>
+				
+				<!-- /.box-header -->
+				<div class="box-body" style="display:none;">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="btn-group ">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									商圈范围
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<a href="#">金牛</a>
+									</li>
+									<li>
+										<a href="#">万达</a>
+									</li>
+									<li>
+										<a href="#">天府广场</a>
+									</li>
+								</ul>
+							</div>
+							<div class="btn-group ">
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									消费类型
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<a href="#">服饰</a>
+									</li>
+									<li>
+										<a href="#">箱包</a>
+									</li>
+									<li>
+										<a href="#">3C数码</a>
+									</li>
+
+								</ul>
+							</div>
+							<div class="btn-group ">
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									支付方式
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<a href="#">刷卡支付</a>
+									</li>
+									<li>
+										<a href="#">GO币支付</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-5 padding_null">
+							<div class=" form-group form-horizontal">
+								<label class="col-xs-3 control-label">时间范围</label>
+								<div class="input-group col-xs-9 ">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input type="text" id="reservation" class="form-control ">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5 form-horizontal">
+							<label class="col-sm-2 control-label padding_null" style="text-align: left;">GO币区间:</label>
+							<div class="col-sm-3 padding_null">
+								<input type="text" class="form-control ">
+							</div>	
+							<label class="titlefont col-sm-1 control-label padding_null" style="text-align:center;">至</label>
+							<div class="col-sm-3 padding_null">
+								<input type="text" class="form-control ">
+							</div>	
+						</div>
+						<div class="col-sm-7 form-horizontal padding_null">
+							<label class="col-sm-2 control-label padding_null">刷卡金额区间</label>
+							<div class="col-sm-3 padding_rightnull">
+								<input type="text" class="form-control ">
+							</div>
+							<label class="titlefont col-sm-1 control-label" style="text-align:center;">至</label>
+							<div class="col-sm-3 padding_null">
+								<input type="text" class="form-control ">
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- body -->
+				<div class="box-footer" style="display:none;">
+					
+
+				</div>
+
+				<!-- 查询条件 -->
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">记录列表</h3>
+					<div class="box-tools">
+						
+					</div>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<th>商家名称</th>
+								<th>所属商圈</th>
+								<th>联系方式</th>
+								<th>地址</th>
+								<th>添加时间</th>
+								<th>操作</th>
+							</tr>
+							<tr>
+								<td>万达旗舰店</td>
+								<td>天府广场</td>
+								<td>
+									<i class="fa fa-fw fa-mobile"></i>
+									13800138000
+								</td>
+								<td>四川成都天府广场</td>
+								
+								<td>2014年4月1日</td>
+								<td><button class="btn btn-info">设置商家手续费</button></td>
+							</tr>
+							<tr>
+								<td>万达旗舰店</td>
+								<td>天府广场</td>
+								<td>
+									<i class="fa fa-fw fa-mobile"></i>
+									13800138000
+								</td>
+								<td>四川成都天府广场</td>
+								
+								<td>2014年4月1日</td>
+								<td><button class="btn btn-info">设置商家手续费</button></td>
+							</tr>
+							<tr>
+								<td>万达旗舰店</td>
+								<td>天府广场</td>
+								<td>
+									<i class="fa fa-fw fa-mobile"></i>
+									13800138000
+								</td>
+								<td>四川成都天府广场</td>
+								
+								<td>2014年4月1日</td>
+								<td><button class="btn btn-info">设置商家手续费</button></td>
+							</tr>
+							<tr>
+								<td>万达旗舰店</td>
+								<td>天府广场</td>
+								<td>
+									<i class="fa fa-fw fa-mobile"></i>
+									13800138000
+								</td>
+								<td>四川成都天府广场</td>
+								
+								<td>2014年4月1日</td>
+								<td><button class="btn btn-info">设置商家手续费</button></td>
+							</tr>
+							<tr>
+								<td>万达旗舰店</td>
+								<td>天府广场</td>
+								<td>
+									<i class="fa fa-fw fa-mobile"></i>
+									13800138000
+								</td>
+								<td>四川成都天府广场</td>
+								
+								<td>2014年4月1日</td>
+								<td><button class="btn btn-info">设置商家手续费</button></td>
+							</tr>
+						
+						</tbody>
+					</table>
+				</div>
+				<!-- /.box-body -->
+				<div class="box-footer clearfix">
+					<ul class="pagination pagination-sm no-margin pull-right">
+						<li>
+							<a href="#">«</a>
+						</li>
+						<li class="active">
+							<a href="#">1</a>
+						</li>
+						<li>
+							<a href="#">2</a>
+						</li>
+						<li>
+							<a href="#">3</a>
+						</li>
+						<li>
+							<a href="#">4</a>
+						</li>
+						<li>
+							<a href="#">5</a>
+						</li>
+						<li>
+							<a href="#">»</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+<!-- /.content -->
+

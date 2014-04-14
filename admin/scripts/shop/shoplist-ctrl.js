@@ -1,4 +1,4 @@
-function ShopCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) {
+function ShopListCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) {
 	 var $parent = $scope.$parent;
 	$scope.shopinfo=$rootScope.shopinfo;
     //获取交易记录 
