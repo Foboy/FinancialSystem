@@ -15,7 +15,7 @@
 						<div class="input-group pull-left" >
                             <input type="text" placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
                             <div class="input-group-btn">
-                                <button class="btn btn-default"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
                             </div>
                     	</div>
                     </div>
@@ -28,7 +28,7 @@
 
                     <div class="margin_top col-sm-2">
                     	<div class="input-group pull-right">
-							<button class="btn btn-info btn-sm ">
+							<button class="btn btn-success btn-flat">
 								<i class="fa fa-download"></i>
 								导出EXCEL
 							</button>
@@ -39,11 +39,9 @@
 				<!-- /.box-header -->
 				<div class="box-body" style="display:none;">
 					<div class="row">
-						<div class="col-xs-1 ">
-							<!-- /.input group -->
+						<div class="col-sm-4">
 							<div class="btn-group ">
-								<button type="button" class="btn btn-default dropdown-toggle"
-									data-toggle="dropdown">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 									商圈范围
 									<span class="caret"></span>
 								</button>
@@ -59,8 +57,6 @@
 									</li>
 								</ul>
 							</div>
-						</div>
-						<div class="col-xs-1">
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
@@ -80,8 +76,6 @@
 
 								</ul>
 							</div>
-						</div>
-						<div class="col-xs-1">
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
@@ -95,18 +89,13 @@
 									<li>
 										<a href="#">GO币支付</a>
 									</li>
-
-
 								</ul>
 							</div>
 						</div>
-
-
-						<div class="col-xs-6">
-
+						<div class="col-sm-5 padding_null">
 							<div class=" form-group form-horizontal">
-								<label class="col-xs-2">时间范围</label>
-								<div class="input-group col-xs-10">
+								<label class="col-xs-3 control-label">时间范围</label>
+								<div class="input-group col-xs-9 ">
 									<div class="input-group-addon">
 										<i class="fa fa-calendar"></i>
 									</div>
@@ -116,70 +105,27 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xs-6">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class=" form-group form-horizontal">
-										<label class="col-xs-6">GO币金额区间</label>
-										<div class="input-group col-xs-6">
-											<input type="text" class="form-control ">
-										</div>
-
-									</div>
-								</div>
-								<div class="col-xs-5">
-									<div class=" form-group form-horizontal">
-
-										<label class="col-xs-4">至</label>
-										<div class="input-group col-xs-8">
-											<input type="text" class="form-control ">
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-
-
-
+						<div class="col-sm-5 form-horizontal">
+							<label class="col-sm-2 control-label padding_null" style="text-align: left;">GO币区间:</label>
+							<div class="col-sm-3 padding_null">
+								<input type="text" class="form-control ">
+							</div>	
+							<label class="titlefont col-sm-1 control-label padding_null" style="text-align:center;">至</label>
+							<div class="col-sm-3 padding_null">
+								<input type="text" class="form-control ">
+							</div>	
 						</div>
-
-					</div>
-					<div class="row">
-						<div class="col-xs-6">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class=" form-group form-horizontal">
-										<label class="col-xs-6">刷卡金额区间</label>
-										<div class="input-group col-xs-6">
-											<input type="text" class="form-control ">
-										</div>
-
-									</div>
-								</div>
-								<div class="col-xs-5">
-									<div class=" form-group form-horizontal">
-
-										<label class="col-xs-4">至</label>
-										<div class="input-group col-xs-8">
-											<input type="text" class="form-control ">
-										</div>
-									</div>
-								</div>
-
+						<div class="col-sm-7 form-horizontal padding_null">
+							<label class="col-sm-2 control-label padding_null">刷卡金额区间</label>
+							<div class="col-sm-3 padding_rightnull">
+								<input type="text" class="form-control ">
 							</div>
-
-
-
-
+							<label class="titlefont col-sm-1 control-label" style="text-align:center;">至</label>
+							<div class="col-sm-3 padding_null">
+								<input type="text" class="form-control ">
+							</div>
 						</div>
-
 					</div>
-
-					<!-- 查询条件 -->
-
-
-
 
 				</div>
 				<!-- body -->
