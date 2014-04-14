@@ -10,6 +10,7 @@
 
 <!-- Main content -->
 <div class="content">
+<form name="shop">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box box-primary collapsed-box">
@@ -38,12 +39,12 @@
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									商圈范围
+									{{csr_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li ng-repeat="sr in ShopRange">
-										<a href="#">{{sr.name}}</a>
+										<a href="#" ng-click="ChooseShopRange(sr)">{{sr.name}}</a>
 									</li>
 								</ul>
 							</div>
@@ -52,12 +53,12 @@
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									消费类型
+									{{cct_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 										<li ng-repeat="ct in Consumptiontype">
-										<a href="#">{{ct.name}}</a>
+										<a href="#" ng-click="ChooseConsumptiontype(ct)">{{ct.name}}</a>
 									</li>
 									
 
@@ -68,12 +69,12 @@
 							<div class="btn-group ">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									支付方式
+									{{cpt_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li ng-repeat="pt in PayType">
-										<a href="#">{{pt.name}}</a>
+										<a href="#" ng-click="ChoosePayType(pt)">{{pt.name}}</a>
 									</li>
 
 
@@ -132,7 +133,7 @@
 									<div class=" form-group form-horizontal">
 										<label class="col-xs-6">刷卡金额区间</label>
 										<div class="input-group col-xs-6">
-											<input type="text" ng-model="shopinfo.cash1" class="form-control ">
+											<input type="text" ng-model="shopinfo.cash1" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/" class="form-control ">
 										</div>
 
 									</div>
@@ -142,7 +143,7 @@
 
 										<label class="col-xs-4">至</label>
 										<div class="input-group col-xs-8">
-											<input type="text" ng-model="shopinfo.cash2" class="form-control ">
+											<input type="text" ng-model="shopinfo.cash2" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/" class="form-control ">
 										</div>
 									</div>
 								</div>
@@ -173,6 +174,7 @@
 
 		</div>
 	</div>
+	</form>
 	<div class="row">
 		<div class="col-xs-12">
 
