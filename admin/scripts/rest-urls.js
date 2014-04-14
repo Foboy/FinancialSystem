@@ -45,6 +45,8 @@
           resturls.add("AddUserAccount", "user/register");//添加用户账号
           resturls.add("UpdateUserState", "user/updateUserState");//启用禁用用户 1 启用 0禁用
           resturls.add("RestPassword", "user/updatePass");//修改用户账号密码
+          //商家统计
+          resturls.add("ShopBills", "Bill/searchBills");//获取交易记录
           $provide.constant('$resturls', resturls);
 
       } ]);
