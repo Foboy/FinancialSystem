@@ -25,7 +25,6 @@ function CustomerCtrl($scope, $http, $location, $routeParams, $resturls, $rootSc
   		$scope.shopinfo=[];
       if (!pageIndex) 
    	   pageIndex = 0;
-      console.log(pageIndex);
       
       $http.post($resturls["ShopBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2,pageindex:pageIndex,pagesize: 2 }).success(function (result) {
           if (result.Error == 0) {
@@ -118,8 +117,8 @@ function CustomerCtrl($scope, $http, $location, $routeParams, $resturls, $rootSc
 
   //获取支付类型
   $scope.PayType=[
-                    {"id":1,"name":"GO币"},
-                    {"id":2,"name":"现金"}
+                    {"id":1,"name":"GO币支付"},
+                    {"id":2,"name":"刷卡消费"}
                     ];
   $scope.ChoosePayType=function(data)
   {

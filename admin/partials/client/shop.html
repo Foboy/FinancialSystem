@@ -17,7 +17,7 @@
 				<div class="box-header form-group">
 					<div class="margin_top padding_rightnull col-sm-7">
 						<div class="input-group pull-left" >
-                            <input type="text" ng-model="shopinfo.skey"  placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
+                            <input type="text" ng-model="shopinfo.skey"  placeholder="模糊查询(商家名称)" class="form-control " name="table_search">
                             <div class="input-group-btn">
                                 <button class="btn btn-default btn-flat" ng-click="SearchlakalaBills()" ><i class="fa fa-search"></i></button>
                             </div>
@@ -155,9 +155,7 @@
 						<tbody>
 							<tr>
 								<th>商家名称</th>
-								<th>客户名称</th>
-								<th>客户手机号</th>
-								<th>客户昵称</th>
+							
 								<th>交易方式</th>
 								<th>消费类型</th>
 								<th>刷卡消费金额</th>
@@ -166,12 +164,7 @@
 							</tr>
 							<tr ng-repeat="bill in shopBills">
 								<td>{{bill.shop_name}}</td>
-								<td>{{bill.username}}</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									{{bill.mobile}}
-								</td>
-								<td>{{bill.nickname}}</td>
+								
 								<td>
 									<i class="fa fa-fw fa-credit-card"></i>
 									{{bill.Pay_Mothed==2?"刷卡消费":"GO币支付"}}
