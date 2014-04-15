@@ -153,7 +153,6 @@
 					<table class="table table-hover">
 						<tbody>
 							<tr>
-								<th>商家名称</th>
 								<th>客户名称</th>
 								<th>客户手机号</th>
 								<th>客户昵称</th>
@@ -164,7 +163,6 @@
 								<th>消费时间</th>
 							</tr>
 							<tr ng-repeat="bill in shopBills">
-								<td>{{bill.shop_name}}</td>
 								<td>{{bill.username}}</td>
 								<td>
 									<i class="fa fa-fw fa-mobile"></i>
@@ -173,7 +171,7 @@
 								<td>{{bill.nickname}}</td>
 								<td>
 									<i class="fa fa-fw fa-credit-card"></i>
-									{{bill.Pay_Mothed==1?"刷卡消费":"GO币支付"}}
+									{{bill.Pay_Mothed==2?"刷卡消费":"GO币支付"}}
 								</td>
 								<td>{{bill.Type}}</td>
 								<td>
