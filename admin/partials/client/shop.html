@@ -187,9 +187,9 @@
 				<!-- /.box-body -->
 				<div class="box-footer clearfix">
 					<ul class="pagination pagination-sm no-margin pull-right">
-						  <li ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}"><<</a></li>
+						  <li ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}">«</a></li>
                 <li ng-class="{{page.active}}?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
-                <li ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">>></a></li>
+                <li ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">»</a></li>
 					</ul>
 				</div>
 			</div>
