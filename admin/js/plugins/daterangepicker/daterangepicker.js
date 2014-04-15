@@ -48,7 +48,7 @@
             fromLabel: '从',
             toLabel: '至',
             weekLabel: 'W',
-            customRangeLabel: 'Custom Range',
+            customRangeLabel: '自定义时间范围',
             daysOfWeek: moment()._lang._weekdaysMin.slice(),
             monthNames: moment()._lang._monthsShort.slice(),
             firstDay: 0

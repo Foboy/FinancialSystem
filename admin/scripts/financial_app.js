@@ -3,7 +3,10 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
     $routeProvider
         .when('/permissions/:sorts?/:pageIndex?', { template: '', controller: function () { } })
         .when('/client/:sorts?/:pageIndex?/:parameters?', { template: '', controller: function () { } })
-        .otherwise({ redirectTo: '/home' });
+        .when('/lakala/:pageIndex?', { template: '', controller: function () { } })
+        .when('/shop/:pageIndex?', { template: '', controller: function () { } })
+        .when('/customer/:pageIndex?', { template: '', controller: function () { } })
+        //.otherwise({ redirectTo: '/home' });
     $stateProvider
          .state('home', {
              url: '/home',
@@ -58,4 +61,45 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter, $resturls) {
             $scope.currentuser = {};
         }
     });
+    
+    // unix时间戳转化为 eg:'2014-04-08'
+    $scope.timestamptostr = function (timestamp) {
+        if (timestamp.indexOf('-') == -1) {
+            var month = 0;
+            var day = 0;
+            if (timestamp) {
+                var unixTimestamp = new Date(timestamp * 1000);
+                if (unixTimestamp.getMonth() < 9) {
+                    month = '0' + (unixTimestamp.getMonth() + 1);
+                }
+                if (unixTimestamp.getDay() < 9) {
+                    day = '0' + unixTimestamp.getDay();
+                }
+                var str = unixTimestamp.getFullYear() + '-' + month + '-' + day;
+                return str;
+            } else {
+                return "";
+            }
+        } else {
+            return timestamp;
+        }
+    }
+
+    // 时间格式字符串 ey:'2014-04-08'转化为unix时间戳
+    $scope.strtotimestamp = function (datestr) {
+        var arr = datestr.split("-");
+        var timestap = new Date(Date.UTC(arr[0], arr[1] - 1, arr[2])).getTime() / 1000;
+        return timestap;
+    }
+    //删除字符串末尾空格和指定字符
+    $scope.trimEnd = function (temp, str) {
+        if (!str) { return temp; }
+        while (true) {
+            if (temp.substr(temp.length - str.length, str.length) != str) {
+                break;
+            }
+            temp = temp.substr(0, temp.length - str.length);
+        }
+        return temp;
+    }
 }

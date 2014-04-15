@@ -12,8 +12,8 @@ class BillsModel {
 	
 	// 新增bills
 	public function insert($shop_id,$customer_id,$pay_mothed,$cash,$go_coin,$type,$amount,$create_time) {
-		// 判断是否已存在
-		$query = $this->db->prepare ( " select *  from crm_bills where shop_id = :shop_id and customer_id = :customer_id and pay_mothed = :pay_mothed and cash = :cash and go_coin = :go_coin and type = :type and amount = :amount and create_time = :create_time" );
+			// 判断是否已存在
+		$query = $this->db->prepare ( " select *  from crm_bills where shop_id = :shop_id and customer_id = :customer_id and pay_mothed = :pay_mothed and cash = :cash and go_coin = :go_coin and type = :type and amount = :amount and create_time = :create_time and app_user_id=:app_user_id" );
 		$query->execute ( array (
 ':shop_id' => $shop_id,
                    ':customer_id' => $customer_id,
@@ -22,7 +22,8 @@ class BillsModel {
                    ':go_coin' => $go_coin,
                    ':type' => $type,
                    ':amount' => $amount,
-                   ':create_time' => $create_time
+                   ':create_time' => $create_time,
+				':app_user_id'=>$app_user_id
 		) );
 		$count = $query->rowCount ();
 		if ($count > 0) {
@@ -30,7 +31,7 @@ class BillsModel {
 		}
 		
 		// 添加操作
-		$sql = "insert into crm_bills(shop_id,customer_id,pay_mothed,cash,go_coin,type,amount,create_time) values (:shop_id,:customer_id,:pay_mothed,:cash,:go_coin,:type,:amount,:create_time)";
+		$sql = "insert into crm_bills(shop_id,customer_id,pay_mothed,cash,go_coin,type,amount,create_time,app_user_id) values (:shop_id,:customer_id,:pay_mothed,:cash,:go_coin,:type,:amount,:create_time,:app_user_id)";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 ':shop_id' => $shop_id,
@@ -40,7 +41,8 @@ class BillsModel {
                    ':go_coin' => $go_coin,
                    ':type' => $type,
                    ':amount' => $amount,
-                   ':create_time' => $create_time
+                   ':create_time' => $create_time,
+				':app_user_id'=>$app_user_id
 		) );
 		$count = $query->rowCount ();
 		if ($count != 1) {
@@ -79,6 +81,7 @@ class BillsModel {
 		
 		if(!empty($sname))
 		{
+			
 			$sname=" where
     (bb.username like '%".trim($sname)."%'
         or bb.nickname like '%".trim($sname)."%'
@@ -128,7 +131,7 @@ from
              (cb.Pay_Mothed=:pay_mothed or :pay_mothed=0)
             and (cb.Customer_ID = :customer_id or :customer_id=0)
             and (cb.Shop_ID = :shop_id or :shop_id=0)
-            and (cb.type = :type or :type ='') 
+            and (cb.type = :ptype or :ptype =0) 
 		    $create_time
             $cash
             $go_coin
@@ -137,17 +140,17 @@ from
         left join
     Crm_Gogo_Customers bb ON aa.customer_id = bb.id
 $sname order by aa.create_time desc limit $lastpagenum,$pagesize" ;
+		
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 ':shop_id' => $shop_id,
                    ':customer_id' => $customer_id,
                    ':pay_mothed' => $pay_mothed,
-                   ':type' => $type
+                   ':ptype' => $type
 		) );
 		$objects = $query->fetchAll ();
-		
 		$query = $this->db->prepare ( " select 
-    *
+    count(*)
 from
     (select 
         a.shop_Id,
@@ -168,7 +171,7 @@ from
              (cb.Pay_Mothed=:pay_mothed or :pay_mothed=0)
             and (cb.Customer_ID = :customer_id or :customer_id=0)
             and (cb.Shop_ID = :shop_id or :shop_id=0)
-            and (cb.type = :type or :type ='') 
+            and (cb.type = :ptype or :ptype =0) 
 		    $create_time
             $cash
             $go_coin
@@ -181,7 +184,7 @@ $sname " );
 ':shop_id' => $shop_id,
                    ':customer_id' => $customer_id,
                    ':pay_mothed' => $pay_mothed,
-                   ':type' => $type
+                   ':ptype' => $type
 		) );
 		$totalcount = $query->fetchColumn ( 0 );
 		

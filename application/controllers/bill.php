@@ -21,66 +21,81 @@ class Bill extends Controller {
 		$result = new DataResult ();
 		if (! isset ( $_POST ['sname'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['shop_id'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['customer_id'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['pay_mothed'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['cash1'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
+		
 		if (! isset ( $_POST ['cash2'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['go_coin1'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['go_coin2'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['type'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
+		
 		if (! isset ( $_POST ['create_time1'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['create_time2'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['pageindex'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}
 		if (! isset ( $_POST ['pagesize'] ) ) {
 			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage=FEEDBACK_PARMS_FAILED;
 			print json_encode ( $result );
 			return ;
 		}

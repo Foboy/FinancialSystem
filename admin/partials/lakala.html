@@ -12,9 +12,9 @@
 				<div class="box-header form-group">
 					<div class="margin_top padding_rightnull col-sm-7">
 						<div class="input-group pull-left" >
-                            <input type="text" placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
+                            <input type="text" ng-model="shopinfo.skey"  placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
                             <div class="input-group-btn">
-                                <button class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-default btn-flat" ng-click="SearchlakalaBills()" ><i class="fa fa-search"></i></button>
                             </div>
                     	</div>
                     </div> 
@@ -41,53 +41,41 @@
 						<div class="col-md-5 col-sm-7">
 							<div class="btn-group btn-group-sm">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									商圈范围
+									{{csr_name}}
 									<span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">金牛</a>
-									</li>
-									<li>
-										<a href="#">万达</a>
-									</li>
-									<li>
-										<a href="#">天府广场</a>
+									<ul class="dropdown-menu" role="menu">
+									<li ng-repeat="sr in ShopRange">
+										<a href="#" ng-click="ChooseShopRange(sr)">{{sr.name}}</a>
 									</li>
 								</ul>
 							</div>
 							<div class="btn-group btn-group-sm">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									消费类型
+										{{cct_name}}
 									<span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">服饰</a>
+							<ul class="dropdown-menu" role="menu">
+										<li ng-repeat="ct in Consumptiontype">
+										<a href="#" ng-click="ChooseConsumptiontype(ct)">{{ct.name}}</a>
 									</li>
-									<li>
-										<a href="#">箱包</a>
-									</li>
-									<li>
-										<a href="#">3C数码</a>
-									</li>
+									
 
 								</ul>
 							</div>
 							<div class="btn-group btn-group-sm">
 								<button type="button" class="btn btn-default dropdown-toggle"
 									data-toggle="dropdown">
-									支付方式
+									{{cpt_name}}
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">刷卡支付</a>
+									<li ng-repeat="pt in PayType">
+										<a href="#" ng-click="ChoosePayType(pt)">{{pt.name}}</a>
 									</li>
-									<li>
-										<a href="#">GO币支付</a>
-									</li>
+
+
 								</ul>
 							</div>
 						</div>
@@ -99,7 +87,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" id="reservation" class="form-control ">
+										<input type="text" id="reservation" ng-model="shopinfo.daterange" class="form-control ">
 									</div>
 								</div>
 							</div>
@@ -109,21 +97,21 @@
 						<div class="col-md-5  form-horizontal">
 							<label class="col-md-3  control-label padding_null" style="text-align: left;">GO币区间:</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control ">
+								<input type="text" class="form-control " ng-model="shopinfo.GO1">
 							</div>	
 							<label class="titlefont col-sm-1 control-label padding_null" style="text-align:center;">至</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control ">
+								<input type="text" class="form-control " ng-model="shopinfo.GO2">
 							</div>	
 						</div>
 						<div class="col-md-6 form-horizontal padding_null">
 							<label class="col-md-3 col-lg-3 control-label padding_null">刷卡金额区间:</label>
 							<div class="col-md-3 padding_rightnull">
-								<input type="text" class="form-control ">
+								<input type="text" class="form-control " ng-model="shopinfo.cash1" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
 							</div>
 							<label class="titlefont col-sm-1 control-label" style="text-align:center;">至</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control ">
+								<input type="text" class="form-control " ng-model="shopinfo.cash2" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
 							</div>
 						</div>
 					</div>
@@ -132,14 +120,14 @@
 				<!-- body -->
 				<div class="box-footer" style="display:none;">
 					<label>已选条件：</label>
-					<button type="button" class="btn btn-primary btn-flat btn-sm" data-toggle="dropdown">
-    					Action <span class="fa fa-fw fa-times whitecolor"></span>
+					<button id="tag_sr" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddensrtag()" data-toggle="dropdown">
+    					{{tag_sr_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
   					</button>
-					<button type="button" class="btn btn-primary btn-flat btn-sm" data-toggle="dropdown">
-    					Action <span class="fa fa-fw fa-times whitecolor"></span>
+					<button id="tag_ct" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddencttag()" data-toggle="dropdown">
+    					{{tag_ct_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
   					</button>
-  					<button type="button" class="btn btn-primary btn-flat btn-sm" data-toggle="dropdown">
-    					Action <span class="fa fa-fw fa-times whitecolor"></span>
+  					<button id="tag_pt" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddenpttag()" data-toggle="dropdown">
+    					{{tag_pt_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
   					</button>
 				</div>
 			</div>
@@ -171,148 +159,39 @@
 								<th>GO币消费金额</th>
 								<th>消费时间</th>
 							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>王锐</td>
+							<tr ng-repeat="bill in shopBills">
+								<td>{{bill.shop_name}}</td>
+								<td>{{bill.username}}</td>
 								<td>
 									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
+									{{bill.mobile}}
 								</td>
-								<td>王小二</td>
+								<td>{{bill.nickname}}</td>
 								<td>
 									<i class="fa fa-fw fa-credit-card"></i>
-									刷卡消费
+									{{bill.Pay_Mothed==1?"刷卡消费":"GO币支付"}}
 								</td>
-								<td>衣服</td>
+								<td>{{bill.Type}}</td>
 								<td>
 									<i class="fa fa-fw fa-rmb"></i>
-									100.00
+									{{bill.Cash}}
 								</td>
 								<td>
 									<i class="fa fa-fw fa-dot-circle-o"></i>
-									32
+									{{bill.Go_Coin}}
 								</td>
-								<td>2014年4月1日</td>
+								<td>{{bill.Create_Time}}</td>
 							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>王锐</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>王小二</td>
-								<td>
-									<i class="fa fa-fw fa-credit-card"></i>
-									刷卡消费
-								</td>
-								<td>衣服</td>
-								<td>
-									<i class="fa fa-fw fa-rmb"></i>
-									100.00
-								</td>
-								<td>
-									<i class="fa fa-fw fa-dot-circle-o"></i>
-									32
-								</td>
-								<td>2014年4月1日</td>
-							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>王锐</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>王小二</td>
-								<td>
-									<i class="fa fa-fw fa-credit-card"></i>
-									刷卡消费
-								</td>
-								<td>衣服</td>
-								<td>
-									<i class="fa fa-fw fa-rmb"></i>
-									100.00
-								</td>
-								<td>
-									<i class="fa fa-fw fa-dot-circle-o"></i>
-									32
-								</td>
-								<td>2014年4月1日</td>
-							</tr>
-							<tr>
-								<td>万达</td>
-								<td>王锐</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>王小二</td>
-								<td>
-									<i class="fa fa-fw fa-credit-card"></i>
-									刷卡消费
-								</td>
-								<td>衣服</td>
-								<td>
-									<i class="fa fa-fw fa-rmb"></i>
-									100.00
-								</td>
-								<td>
-									<i class="fa fa-fw fa-dot-circle-o"></i>
-									32
-								</td>
-								<td>2014年4月1日</td>
-							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>王锐</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>王小</td>
-								<td>
-									<i class="fa fa-fw fa-credit-card"></i>
-									刷卡消费
-								</td>
-								<td>衣服</td>
-								<td>
-									<i class="fa fa-fw fa-rmb"></i>
-									100.00
-								</td>
-								<td>
-									<i class="fa fa-fw fa-dot-circle-o"></i>
-									32
-								</td>
-								<td>2014年4月1日</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer clearfix">
 					<ul class="pagination pagination-sm no-margin pull-right">
-						<li>
-							<a href="#">«</a>
-						</li>
-						<li class="active">
-							<a href="#">1</a>
-						</li>
-						<li>
-							<a href="#">2</a>
-						</li>
-						<li>
-							<a href="#">3</a>
-						</li>
-						<li>
-							<a href="#">4</a>
-						</li>
-						<li>
-							<a href="#">5</a>
-						</li>
-						<li>
-							<a href="#">»</a>
-						</li>
+						  <li ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}"><<</a></li>
+                <li ng-class="{{page.active}}?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+                <li ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">>></a></li>
 					</ul>
 				</div>
 			</div>
