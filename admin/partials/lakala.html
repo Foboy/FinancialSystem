@@ -12,7 +12,7 @@
 				<div class="box-header form-group">
 					<div class="margin_top padding_rightnull col-sm-7">
 						<div class="input-group pull-left" >
-                            <input type="text" ng-model="shopinfo.skey"  placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
+                            <input type="text" ng-model="shopinfo.skey"  placeholder="模糊查询(交易流水号，商家，客户，手机，昵称)" class="form-control " name="table_search">
                             <div class="input-group-btn">
                                 <button class="btn btn-default btn-flat" ng-click="SearchlakalaBills()" ><i class="fa fa-search"></i></button>
                             </div>
@@ -149,6 +149,7 @@
 					<table class="table table-hover">
 						<tbody>
 							<tr>
+							<th>交易流水号</th>
 								<th>商家名称</th>
 								<th>客户名称</th>
 								<th>客户手机号</th>
@@ -160,6 +161,7 @@
 								<th>消费时间</th>
 							</tr>
 							<tr ng-repeat="bill in shopBills">
+							<td>{{bill.lakala_order_no}}</td>
 								<td>{{bill.shop_name}}</td>
 								<td>{{bill.username}}</td>
 								<td>
@@ -180,7 +182,7 @@
 									<i class="fa fa-fw fa-dot-circle-o"></i>
 									{{bill.Go_Coin}}
 								</td>
-								<td>{{bill.Create_Time}}</td>
+								<td>{{timestamptostr(bill.Create_Time)}}</td>
 							</tr>
 							
 						</tbody>
