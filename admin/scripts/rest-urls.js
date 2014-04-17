@@ -49,6 +49,8 @@
           resturls.add("ShopBills", "Bill/searchBills");//获取交易记录
           resturls.add("ExcelBills", "Bill/searchBillsToExcel");//设置EXCEL
           resturls.add("BillsToExcel", "Bill/excelDownload");//导出EXCEL
+          resturls.add("ShopList", "Bill/searchShopList");//查询商家列表
+          resturls.add("SetShopRate", "Bill/SetShopRate");//设置商家手续费率
           $provide.constant('$resturls', resturls);
 
       } ]);

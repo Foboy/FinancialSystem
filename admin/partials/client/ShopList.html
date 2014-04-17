@@ -10,15 +10,14 @@
 		<div class="col-xs-12">
 			<div class="box box-primary collapsed-box">
 				<div class="box-header form-group">
-
 					<div class="margin_top padding_rightnull col-sm-7">
 						<div class="input-group pull-left" >
-                            <input type="text" placeholder="模糊查询(商家，客户，手机，昵称)" class="form-control " name="table_search">
+                            <input type="text" ng-model="shopinfo.skey"  placeholder="模糊查询(商家名称，商圈名称，地址，联系方式)" class="form-control " name="table_search">
                             <div class="input-group-btn">
-                                <button class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-default btn-flat" ng-click="SearchShopList()" ><i class="fa fa-search"></i></button>
                             </div>
                     	</div>
-                    </div>
+                    </div> 
 
 
  					<div class="margin_top padding_null col-sm-3" >
@@ -26,95 +25,59 @@
                     </div>
 
 
+              
 				</div>
 				
 				<!-- /.box-header -->
 				<div class="box-body" style="display:none;">
 					<div class="row">
-						<div class="col-sm-4">
-							<div class="btn-group ">
+						<div class="col-md-5 col-sm-7">
+							<div class="btn-group btn-group-sm">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									商圈范围
+									{{csr_name}}
 									<span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">金牛</a>
-									</li>
-									<li>
-										<a href="#">万达</a>
-									</li>
-									<li>
-										<a href="#">天府广场</a>
+									<ul class="dropdown-menu" role="menu">
+									<li ng-repeat="sr in ShopRange">
+										<a ng-click="ChooseShopRange(sr)">{{sr.name}}</a>
 									</li>
 								</ul>
 							</div>
-							<div class="btn-group ">
-								<button type="button" class="btn btn-default dropdown-toggle"
-									data-toggle="dropdown">
-									消费类型
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">服饰</a>
-									</li>
-									<li>
-										<a href="#">箱包</a>
-									</li>
-									<li>
-										<a href="#">3C数码</a>
-									</li>
-
-								</ul>
-							</div>
-							<div class="btn-group ">
-								<button type="button" class="btn btn-default dropdown-toggle"
-									data-toggle="dropdown">
-									支付方式
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="#">刷卡支付</a>
-									</li>
-									<li>
-										<a href="#">GO币支付</a>
-									</li>
-								</ul>
-							</div>
+			
 						</div>
-						<div class="col-sm-5 padding_null">
-							<div class=" form-group form-horizontal">
-								<label class="col-xs-3 control-label">时间范围</label>
-								<div class="input-group col-xs-9 ">
-									<div class="input-group-addon">
-										<i class="fa fa-calendar"></i>
+						<div class="col-md-5 padding_null">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label class="control-label col-md-4">时间范围</label>
+									<div class="input-group  col-md-8">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="text" id="reservation" ng-model="shopinfo.daterange" class="form-control ">
 									</div>
-									<input type="text" id="reservation" class="form-control ">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-5 form-horizontal">
-							<label class="col-sm-2 control-label padding_null" style="text-align: left;">GO币区间:</label>
-							<div class="col-sm-3 padding_null">
-								<input type="text" class="form-control ">
+									<div class="row">
+						<div class="col-md-5  form-horizontal">
+							<label class="col-md-3  control-label padding_null" style="text-align: left;">拉卡拉手续费率区间:</label>
+							<div class="col-md-3 padding_null">
+								<input type="text" class="form-control " ng-model="shopinfo.lakala1"  ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
 							</div>	
 							<label class="titlefont col-sm-1 control-label padding_null" style="text-align:center;">至</label>
-							<div class="col-sm-3 padding_null">
-								<input type="text" class="form-control ">
+							<div class="col-md-3 padding_null">
+								<input type="text" class="form-control " ng-model="shopinfo.lakala2"  ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
 							</div>	
 						</div>
-						<div class="col-sm-7 form-horizontal padding_null">
-							<label class="col-sm-2 control-label padding_null">刷卡金额区间</label>
-							<div class="col-sm-3 padding_rightnull">
-								<input type="text" class="form-control ">
+						<div class="col-md-6 form-horizontal padding_null">
+							<label class="col-md-3 col-lg-3 control-label padding_null">POS机手续费率区间:</label>
+							<div class="col-md-3 padding_rightnull">
+								<input type="text" class="form-control " ng-model="shopinfo.post1" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
 							</div>
 							<label class="titlefont col-sm-1 control-label" style="text-align:center;">至</label>
-							<div class="col-sm-3 padding_null">
-								<input type="text" class="form-control ">
+							<div class="col-md-3 padding_null">
+								<input type="text" class="form-control " ng-model="shopinfo.post2" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
 							</div>
 						</div>
 					</div>
@@ -122,11 +85,12 @@
 				</div>
 				<!-- body -->
 				<div class="box-footer" style="display:none;">
-					
-
+					<label>已选条件：</label>
+					<button id="tag_sr" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddensrtag()" data-toggle="dropdown">
+    					{{tag_sr_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
+  					</button>
+				
 				</div>
-
-				<!-- 查询条件 -->
 			</div>
 
 		</div>
@@ -150,104 +114,67 @@
 								<th>所属商圈</th>
 								<th>联系方式</th>
 								<th>地址</th>
+								<th>pos机手续费率</th>
+								<th>拉卡拉手续费率</th>
 								<th>添加时间</th>
 								<th>操作</th>
 							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>天府广场</td>
+							<tr ng-repeat="shop in shopList">
+								<td>{{shop.name}}</td>
+								<td>{{shop.area_name}}</td>
 								<td>
 									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
+									{{shop.mobile}}
 								</td>
-								<td>四川成都天府广场</td>
+								<td>{{shop.address}}</td>
+								<td>{{shop.pos_rate}}</td>
+								<td>{{shop.lakala_rate}}</td>
 								
-								<td>2014年4月1日</td>
-								<td><button class="btn btn-info">设置商家手续费</button></td>
-							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>天府广场</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>四川成都天府广场</td>
-								
-								<td>2014年4月1日</td>
-								<td><button class="btn btn-info">设置商家手续费</button></td>
-							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>天府广场</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>四川成都天府广场</td>
-								
-								<td>2014年4月1日</td>
-								<td><button class="btn btn-info">设置商家手续费</button></td>
-							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>天府广场</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>四川成都天府广场</td>
-								
-								<td>2014年4月1日</td>
-								<td><button class="btn btn-info">设置商家手续费</button></td>
-							</tr>
-							<tr>
-								<td>万达旗舰店</td>
-								<td>天府广场</td>
-								<td>
-									<i class="fa fa-fw fa-mobile"></i>
-									13800138000
-								</td>
-								<td>四川成都天府广场</td>
-								
-								<td>2014年4月1日</td>
-								<td><button class="btn btn-info">设置商家手续费</button></td>
+								<td>{{timestamptostr(shop.add_time)}}</td>
+								<td><button class="btn btn-info" ng-click="GetCurrentShopRate(shop.id,shop.pos_rate,shop.lakala_rate)" data-toggle="modal" data-target="#setRateModal">设置商家手续费</button></td>
 							</tr>
 						
 						</tbody>
 					</table>
 				</div>
 				<!-- /.box-body -->
-				<div class="box-footer clearfix">
+					<div class="box-footer clearfix">
 					<ul class="pagination pagination-sm no-margin pull-right">
-						<li>
-							<a href="#">«</a>
-						</li>
-						<li class="active">
-							<a href="#">1</a>
-						</li>
-						<li>
-							<a href="#">2</a>
-						</li>
-						<li>
-							<a href="#">3</a>
-						</li>
-						<li>
-							<a href="#">4</a>
-						</li>
-						<li>
-							<a href="#">5</a>
-						</li>
-						<li>
-							<a href="#">»</a>
-						</li>
+						  <li ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}">«</a></li>
+                <li ng-class="{{page.active}}?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+                <li ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">»</a></li>
 					</ul>
 				</div>
 			</div>
 
 		</div>
 	</div>
-
+<!-- Modal -->
+<div class="modal fade" id="setRateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">设置商家手续费</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12  form-horizontal">
+                                            <label class="col-md-5">pos机手续费率</label>
+                                            <input  type="text" value="{{currentPostRate}}" ng-model="currentPostRate"  class="form-control col-md-7" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+                                        </div>
+                                          <div class="form-group col-md-12  form-horizontal">
+                                            <label class="col-md-5">拉卡拉手续费率</label>
+                                            <input type="text" value="{{currentLakalaRate}}" ng-model="currentLakalaRate"  class="form-control col-md-7" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+                                        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" ng-click="SetShopRate()">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </div>
 <!-- /.content -->
 
