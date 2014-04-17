@@ -7,19 +7,20 @@
     "phpmailer/phpmailer" : "5.2.*",
     "gregwar/captcha" : "dev-master",
     "facebook/php-sdk" : "@stable",
-    "raveren/kint" : "dev-1.0.0-wip"
+    "raveren/kint" : "dev-1.0.0-wip",
+    "phpoffice/phpexcel" : "=1.8.0"
   },
   "authors" : [ {
     "name" : "Panique",
     "homepage" : "http://careers.stackoverflow.com/panique",
     "role" : "Developer"
   } ],
+  "keywords" : [ "login", "auth", "user", "authentification", "mvc" ],
   "support" : {
     "issues" : "https://github.com/panique/php-login/issues",
     "source" : "https://github.com/panique/php-login"
   },
-  "keywords" : [ "login", "auth", "user", "authentification", "mvc" ],
-  "license" : "MIT",
   "type" : "project",
+  "license" : "MIT",
   "homepage" : "https://github.com/panique/php-login"
 }

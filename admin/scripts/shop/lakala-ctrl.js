@@ -1,14 +1,19 @@
 function LakalaCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) {
 
+
 	 var $parent = $scope.$parent;
 	$scope.shopinfo=$rootScope.shopinfo;
 	if(!$scope.shopinfo)
 		$scope.shopinfo=[];
+	
 
-   //获取交易记录 
+
+	   //获取交易记录 
 	// parms sname （模糊查询商户名称客户名称手机号昵称）,shop_id,customer_id,pay_mothed（1:刷卡2:GO币）,
 	//       cash1,cash2,go_coin1,go_coin2,type,create_time1, create_time2,pageindex, pagesize
 
+
+	
 	var shop_id=0;
 	var customer_id=0;
 	$scope.shopinfo.cash1=0;
@@ -21,8 +26,7 @@ function LakalaCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope
 	var create_time1="";
 	var create_time2="";
    $scope.SearchlakalaBills = function (pageIndex) {
-   	if(!$scope.shopinfo)
-   		$scope.shopinfo=[];
+
        if (!pageIndex) 
     	   pageIndex = 0;
        
@@ -37,7 +41,17 @@ function LakalaCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope
            }
        });
    }
-	
+   $scope.ExportExcel = function () {
+
+       
+       $http.post($resturls["ExcelBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2 }).success(function (result) {
+           if (result.Error == 0) {
+              console.log(result);
+           } else {
+        	   console.log(1);
+           }
+       });
+   }
    $('#reservation').daterangepicker({
 			   showDropdowns:true,
 			   format: 'YYYY/MM/DD',

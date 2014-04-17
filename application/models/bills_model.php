@@ -184,6 +184,88 @@ $sname " );
 		
 		return $result;
 	}
+	// 分页查询bills
+	public function searchForExcel($sname,$shop_id,$customer_id,$pay_mothed,$cash1,$cash2,$go_coin1,$go_coin2,$type,$create_time1, $create_time2) {
+		
+		$result=null;
+	
+		if(!empty($sname))
+		{
+				
+			$sname=" where
+    (bb.username like '%".trim($sname)."%'
+        or bb.nickname like '%".trim($sname)."%'
+        or bb.mobile like '%".trim($sname)."%'
+        or aa.shop_name like '%".trim($sname)."%'
+        or aa.lakala_order_no like '%".trim($sname)."%') ";
+		}else
+		{
+			$sname="";
+		}
+	
+		$cash="";
+		$go_coin="";
+		if($cash2>0)
+		{
+			$cash="  and cb.Cash between $cash1 and $cash2  ";
+		}else if($go_coin2>0)
+		{
+			$go_coin=" and cb.Go_Coin between $go_coin1 and $go_coin2 ";
+		}
+	
+		$create_time="";
+		if(!empty($create_time1) and !empty($create_time2))
+		{
+			$create_time="  and cb.Create_Time between $create_time1 and $create_time2 ";
+		}
+	
+	
+		$sql = " select
+		*
+		from
+		(select
+		a.lakala_order_no,
+		a.shop_Id,
+		a.customer_id,
+		a.Pay_Mothed,
+		a.Cash,
+		a.Go_Coin,
+		a.Type,
+		a.Amount,
+		a.Create_Time,
+		b.name shop_name
+		FROM
+		(select
+		*
+		from
+		Crm_Bills cb
+		where
+		(cb.Pay_Mothed=:pay_mothed or :pay_mothed=0)
+		and (cb.Customer_ID = :customer_id or :customer_id=0)
+		and (cb.Shop_ID = :shop_id or :shop_id=0)
+		and (cb.type = :ptype or :ptype =0)
+		$create_time
+		$cash
+		$go_coin
+		) a
+		left join Crm_Shops b ON a.shop_id = b.id) aa
+		left join
+		Crm_Gogo_Customers bb ON aa.customer_id = bb.id
+		$sname order by aa.create_time desc " ;
+		//print $sql;
+		$query = $this->db->prepare ( $sql );
+		$query->execute ( array (
+		':shop_id' => $shop_id,
+		':customer_id' => $customer_id,
+		':pay_mothed' => $pay_mothed,
+		':ptype' => $type
+		) );
+		$objects = $query->fetchAll ();
+		
+		$result = $objects;
+	
+	    return $result;
+	}
     //查询全部bills
 	public function search() {
 		$result = new DataResult ();
