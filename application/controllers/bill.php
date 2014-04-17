@@ -182,29 +182,34 @@ class Bill extends Controller {
 		
 		$bills_model = $this->loadModel ( 'Bills' );
 		
-		$result->Data = $bills_model->searchForExcel ( $_POST ['sname'], $_POST ['shop_id'], $_POST ['customer_id'], $_POST ['pay_mothed'], $_POST ['cash1'], $_POST ['cash2'], $_POST ['go_coin1'], $_POST ['go_coin2'], $_POST ['type'], $_POST ['create_time1'], $_POST ['create_time2'] );
-		
-		$toExcel=new PHP2EXCEL();
-		
-		$headArr=array(
-			"lakala_order_no"=>"交易流水号",
-				"shop_name"=>"商家名称",
-				"username"=>"客户名称",
-				"mobile"=>"客户手机号",
-				"nickname"=>"客户昵称",
-				"Pay_Mothed"=>"交易方式",
-				"Type"=>"消费类型",
-				"Cash"=>"刷卡消费金额",
-				"Go_Coin"=>"GO币消费金额",
-				"Create_Time"=>"消费时间"
-				
-		);
-		
-		$toExcel->getExcel('test', $headArr, $result->Data);
-	    
-		
-		print json_encode ( $result );
+		$bills_model->searchForExcel ( $_POST ['sname'], $_POST ['shop_id'], $_POST ['customer_id'], $_POST ['pay_mothed'], $_POST ['cash1'], $_POST ['cash2'], $_POST ['go_coin1'], $_POST ['go_coin2'], $_POST ['type'], $_POST ['create_time1'], $_POST ['create_time2'] );
+		$result->Error=ErrorType::Success;
+		print json_encode($result);
 	}
-	
+// 	public function excelDownload()
+// 	{
+// 		$toExcel=new PHP2EXCEL();
+		
+// 		$headArr=array(
+// 				"lakala_order_no"=>"交易流水号",
+// 				"shop_name"=>"商家名称",
+// 				"username"=>"客户名称",
+// 				"mobile"=>"客户手机号",
+// 				"nickname"=>"客户昵称",
+// 				"Pay_Mothed"=>"交易方式",
+// 				"Type"=>"消费类型",
+// 				"Cash"=>"刷卡消费金额",
+// 				"Go_Coin"=>"GO币消费金额",
+// 				"Create_Time"=>"消费时间"
+		
+// 		);
+// 		$bills_model = $this->loadModel ( 'Bills' );
+// // 		 $data=$bills_model->excelDownloadQuery();
+		
+// 		$toExcel->getExcel('test', $headArr, $bills_model->excelDownloadQuery());
+		 
+// 	}
+
+
 
 }

@@ -253,18 +253,33 @@ $sname " );
 		Crm_Gogo_Customers bb ON aa.customer_id = bb.id
 		$sname order by aa.create_time desc " ;
 		//print $sql;
-		$query = $this->db->prepare ( $sql );
-		$query->execute ( array (
+// 		$query = $this->db->prepare ( $sql );
+// 		$query->execute ( array (
+// 		':shop_id' => $shop_id,
+// 		':customer_id' => $customer_id,
+// 		':pay_mothed' => $pay_mothed,
+// 		':ptype' => $type
+// 		) );
+		//$objects = $query->fetchAll ();
+		
+		//$result = $objects;
+		
+	    //return $result;
+	    $_SESSION["excel_export_sql"] = $sql;
+	    $_SESSION["excel_export_parms"] =  array (
 		':shop_id' => $shop_id,
 		':customer_id' => $customer_id,
 		':pay_mothed' => $pay_mothed,
 		':ptype' => $type
-		) );
-		$objects = $query->fetchAll ();
-		
-		$result = $objects;
+		);
+	}
 	
-	    return $result;
+	public function excelDownloadQuery()
+	{
+		$sql = $_SESSION["excel_export_sql"];
+		$query = $this->db->prepare ( $sql );
+		$query->execute ( $_SESSION["excel_export_parms"]);
+		return $query->fetchAll ();
 	}
     //查询全部bills
 	public function search() {

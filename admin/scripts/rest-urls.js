@@ -47,6 +47,8 @@
           resturls.add("RestPassword", "user/updatePass");//修改用户账号密码
           //商家统计
           resturls.add("ShopBills", "Bill/searchBills");//获取交易记录
+          resturls.add("ExcelBills", "Bill/searchBillsToExcel");//设置EXCEL
+          resturls.add("BillsToExcel", "Bill/excelDownload");//导出EXCEL
           $provide.constant('$resturls', resturls);
 
       } ]);
