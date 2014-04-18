@@ -124,16 +124,25 @@
 				</div>
 				<!-- body -->
 				<div class="box-footer" style="display:none;">
-					<label>已选条件：</label>
-					<button id="tag_sr" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddensrtag()" data-toggle="dropdown">
-    					{{tag_sr_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
-  					</button>
-					<button id="tag_ct" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddencttag()" data-toggle="dropdown">
-    					{{tag_ct_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
-  					</button>
-  					<button id="tag_pt" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddenpttag()" data-toggle="dropdown">
-    					{{tag_pt_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
-  					</button>
+			<div class="row">
+						<div class="col-xs-12">
+							<label>已选条件：</label>
+							<button id="tag_sr" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddensrtag()" data-toggle="dropdown">
+		    					{{tag_sr_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
+		  					</button>
+							<button id="tag_ct" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddencttag()" data-toggle="dropdown">
+		    					{{tag_ct_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
+		  					</button>
+		  					<button id="tag_pt" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddenpttag()" data-toggle="dropdown">
+		    					{{tag_pt_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
+		  					</button>
+	  					</div>
+  					</div>
+  					<div class="row margin_top">
+  						<div class="col-xs-12">
+  							<button class="btn btn-warning disabled center-block" ng-click="SearchlakalaBills()">搜索</button>
+  						</div>
+  					</div>
 				</div>
 			</div>
 
