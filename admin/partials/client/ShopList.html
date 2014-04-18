@@ -63,11 +63,11 @@
 						<div class="col-md-5  form-horizontal">
 							<label class="col-md-3  control-label padding_null" style="text-align: left;">拉卡拉手续费率区间:</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control " ng-model="shopinfo.lakala1"  ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+								<input type="text" class="form-control " ng-model="shopinfo.lakala1"  ng-pattern="/^([1-9][\d]{0,2}|0)(\.[\d]{1,2})?$/">
 							</div>	
 							<label class="titlefont col-sm-1 control-label padding_null" style="text-align:center;">至</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control " ng-model="shopinfo.lakala2"  ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+								<input type="text" class="form-control " ng-model="shopinfo.lakala2"  ng-pattern="/^([1-9][\d]{0,2}|0)(\.[\d]{1,2})?$/">
 							</div>	
 						</div>
 						<div class="col-md-6 form-horizontal padding_null">
@@ -85,11 +85,19 @@
 				</div>
 				<!-- body -->
 				<div class="box-footer" style="display:none;">
+				<div class="row">
+						<div class="col-xs-12">
 					<label>已选条件：</label>
 					<button id="tag_sr" type="button" class="btn btn-primary btn-flat btn-sm hidden" ng-click="Hiddensrtag()" data-toggle="dropdown">
     					{{tag_sr_text}} <span class="fa fa-fw fa-times whitecolor" ></span>
   					</button>
-				
+  						</div>
+  					</div>
+					<div class="row margin_top">
+  						<div class="col-xs-12">
+  							<button class="btn btn-warning center-block" ng-click="SearchShopList()">搜索</button>
+  						</div>
+  					</div>
 				</div>
 			</div>
 
