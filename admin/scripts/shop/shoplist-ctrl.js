@@ -42,10 +42,9 @@ function ShopListCtrl($scope, $http, $location, $routeParams, $resturls,$rootSco
   //修改商家手续费率包括POS机费率以及拉卡拉费率
   $scope.SetShopRate=function()
   {
-		console.log($scope.currentShopId+"||"+$scope.currentPostRate+"||"+$scope.currentLakalaRate);
 	  $http.post($resturls["SetShopRate"], { shop_id:$scope.currentShopId, pos_rate:$scope.currentPostRate,lakala_rate:$scope.currentLakalaRate }).success(function (result) {
           if (result.Error == 0) {
-          alert("success");
+        	  $('#setRateModal').modal('hide');
           } else {
            
           }
@@ -54,7 +53,6 @@ function ShopListCtrl($scope, $http, $location, $routeParams, $resturls,$rootSco
 
 $scope.GetCurrentShopRate=function(shopid,postrate,lakalarate)
 {
-	console.log(shopid+"||"+postrate+"||"+lakalarate);
 	  $scope.currentPostRate=postrate;
 	  $scope.currentLakalaRate=lakalarate;
 	  $scope.currentShopId=shopid;

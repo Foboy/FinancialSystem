@@ -120,7 +120,6 @@ class ShopsModel {
 	}
 	// 修改shops
 	public function updateRate($id,$pos_rate,$lakala_rate) {
-		print $id."||".$pos_rate."||".$lakala_rate;
 		$sql = " update crm_shops set pos_rate = :pos_rate,lakala_rate = :lakala_rate where id = :id";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
