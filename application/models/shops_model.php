@@ -13,7 +13,7 @@ class ShopsModel {
 	// 新增shops
 	public function insert($name,$description,$cover_pictureid,$brand_id,$tags,$mobile,$telphone,$city_id,$area_id,$district_id,$street_id,$address,$longitude,$latitude,$booking_num,$view_num,$comm_num,$check_status,$add_adminid,$add_time,$flag,$sys_time,$pos_rate,$lakala_rate) {
 		// 判断是否已存在
-		$query = $this->db->prepare ( " select *  from crm_shops where name = :name and description = :description and cover_pictureid = :cover_pictureid and brand_id = :brand_id and tags = :tags and mobile = :mobile and telphone = :telphone and city_id = :city_id and area_id = :area_id and district_id = :district_id and street_id = :street_id and address = :address and longitude = :longitude and latitude = :latitude and booking_num = :booking_num and view_num = :view_num and comm_num = :comm_num and check_status = :check_status and add_adminid = :add_adminid and add_time = :add_time and flag = :flag and sys_time = :sys_time and pos_rate = :pos_rate and lakala_rate = :lakala_rate" );
+		$query = $this->db->prepare ( " select *  from Crm_Shops where name = :name and description = :description and cover_pictureid = :cover_pictureid and brand_id = :brand_id and tags = :tags and mobile = :mobile and telphone = :telphone and city_id = :city_id and area_id = :area_id and district_id = :district_id and street_id = :street_id and address = :address and longitude = :longitude and latitude = :latitude and booking_num = :booking_num and view_num = :view_num and comm_num = :comm_num and check_status = :check_status and add_adminid = :add_adminid and add_time = :add_time and flag = :flag and sys_time = :sys_time and pos_rate = :pos_rate and lakala_rate = :lakala_rate" );
 		$query->execute ( array (
 ':name' => $name,
                    ':description' => $description,
@@ -46,7 +46,7 @@ class ShopsModel {
 		}
 		
 		// 添加操作
-		$sql = "insert into crm_shops(name,description,cover_pictureid,brand_id,tags,mobile,telphone,city_id,area_id,district_id,street_id,address,longitude,latitude,booking_num,view_num,comm_num,check_status,add_adminid,add_time,flag,sys_time,pos_rate,lakala_rate) values (:name,:description,:cover_pictureid,:brand_id,:tags,:mobile,:telphone,:city_id,:area_id,:district_id,:street_id,:address,:longitude,:latitude,:booking_num,:view_num,:comm_num,:check_status,:add_adminid,:add_time,:flag,:sys_time,:pos_rate,:lakala_rate)";
+		$sql = "insert into Crm_Shops(name,description,cover_pictureid,brand_id,tags,mobile,telphone,city_id,area_id,district_id,street_id,address,longitude,latitude,booking_num,view_num,comm_num,check_status,add_adminid,add_time,flag,sys_time,pos_rate,lakala_rate) values (:name,:description,:cover_pictureid,:brand_id,:tags,:mobile,:telphone,:city_id,:area_id,:district_id,:street_id,:address,:longitude,:latitude,:booking_num,:view_num,:comm_num,:check_status,:add_adminid,:add_time,:flag,:sys_time,:pos_rate,:lakala_rate)";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 ':name' => $name,
@@ -82,7 +82,7 @@ class ShopsModel {
 		
 		// 获取ID
 		// get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
-		$query = $this->db->prepare ( " select id from crm_shops where name = :name and description = :description and cover_pictureid = :cover_pictureid and brand_id = :brand_id and tags = :tags and mobile = :mobile and telphone = :telphone and city_id = :city_id and area_id = :area_id and district_id = :district_id and street_id = :street_id and address = :address and longitude = :longitude and latitude = :latitude and booking_num = :booking_num and view_num = :view_num and comm_num = :comm_num and check_status = :check_status and add_adminid = :add_adminid and add_time = :add_time and flag = :flag and sys_time = :sys_time and pos_rate = :pos_rate and lakala_rate = :lakala_rate" );
+		$query = $this->db->prepare ( " select id from Crm_Shops where name = :name and description = :description and cover_pictureid = :cover_pictureid and brand_id = :brand_id and tags = :tags and mobile = :mobile and telphone = :telphone and city_id = :city_id and area_id = :area_id and district_id = :district_id and street_id = :street_id and address = :address and longitude = :longitude and latitude = :latitude and booking_num = :booking_num and view_num = :view_num and comm_num = :comm_num and check_status = :check_status and add_adminid = :add_adminid and add_time = :add_time and flag = :flag and sys_time = :sys_time and pos_rate = :pos_rate and lakala_rate = :lakala_rate" );
 		$query->execute ( array (
 ':name' => $name,
                    ':description' => $description,
@@ -120,7 +120,7 @@ class ShopsModel {
 	}
 	// 修改shops
 	public function updateRate($id,$pos_rate,$lakala_rate) {
-		$sql = " update crm_shops set pos_rate = :pos_rate,lakala_rate = :lakala_rate where id = :id";
+		$sql = " update Crm_Shops set pos_rate = :pos_rate,lakala_rate = :lakala_rate where id = :id";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 ':id' => $id,
@@ -136,7 +136,7 @@ class ShopsModel {
 	}
 	// 根据ID删除shops
 	public function delete($id) {
-		$sql = " delete from crm_shops where id = :id ";
+		$sql = " delete from Crm_Shops where id = :id ";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 				':id' => $id

@@ -30,5 +30,19 @@ class Database extends PDO
          * most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
          */
         parent::__construct(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS, $options);
+        
+        parent::setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
     }
+    
+	   public function rowCount() {
+	        $regex = '/^SELECT\s+(?:ALL\s+|DISTINCT\s+)?(?:.*?)\s+FROM\s+(.*)$/i';
+	        if (preg_match($regex, $this->queryString, $output) > 0) {
+	            $stmt = parent::query("SELECT COUNT(*) FROM {$output[1]}", PDO::FETCH_NUM);
+	
+	            return $stmt->fetchColumn();
+	        }
+	
+	        return false;
+	    }
+	    
 }

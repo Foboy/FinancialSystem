@@ -13,7 +13,7 @@ class BillsModel {
 	// 新增bills
 	public function insert($lakala_order_no,$shop_id,$customer_id,$pay_mothed,$cash,$go_coin,$type,$amount,$create_time,$app_user_id) {
 			// 判断是否已存在
-		$query = $this->db->prepare ( " select *  from crm_bills where lakala_order_no = :lakala_order_no" );
+		$query = $this->db->prepare ( " select *  from Crm_Bills where lakala_order_no = :lakala_order_no" );
 		$query->execute ( array (
 ':lakala_order_no' => $lakala_order_no
 		) );
@@ -23,7 +23,7 @@ class BillsModel {
 		}
 		
 		// 添加操作
-		$sql = "insert into crm_bills(lakala_order_no,shop_id,customer_id,pay_mothed,cash,go_coin,type,amount,create_time,app_user_id) values (:lakala_order_no,:shop_id,:customer_id,:pay_mothed,:cash,:go_coin,:type,:amount,:create_time,:app_user_id)";
+		$sql = "insert into Crm_Bills(lakala_order_no,shop_id,customer_id,pay_mothed,cash,go_coin,type,amount,create_time,app_user_id) values (:lakala_order_no,:shop_id,:customer_id,:pay_mothed,:cash,:go_coin,:type,:amount,:create_time,:app_user_id)";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 ':shop_id' => $shop_id,
@@ -45,7 +45,7 @@ class BillsModel {
 		
 		// 获取ID
 		// get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
-		$query = $this->db->prepare ( " select id from crm_bills where lakala_order_no = :lakala_order_no" );
+		$query = $this->db->prepare ( " select id from Crm_Bills where lakala_order_no = :lakala_order_no" );
 		$query->execute ( array (
 ':lakala_order_no' => $lakala_order_no
 		) );
