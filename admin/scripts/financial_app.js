@@ -5,9 +5,9 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
         .when('/client/:sorts?/:pageIndex?/:parameters?', { template: '', controller: function () { } })
         .when('/lakala/:pageIndex?', { template: '', controller: function () { } })
         .when('/shop/:pageIndex?', { template: '', controller: function () { } })
-        .when('/customer/:pageIndex?', { template: '', controller: function () { } });
-        .when('/splist/:pageIndex?', { template: '', controller: function () { } })
-        .otherwise({ redirectTo: '/home' });
+        .when('/customer/:pageIndex?', { template: '', controller: function () { } })
+        .when('/splist/:pageIndex?', { template: '', controller: function () { } });
+        //.otherwise({ redirectTo: '/home' });
     $stateProvider
          .state('home', {
              url: '/home',
