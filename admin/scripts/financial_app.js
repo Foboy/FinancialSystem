@@ -6,12 +6,13 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
         .when('/lakala/:pageIndex?', { template: '', controller: function () { } })
         .when('/shop/:pageIndex?', { template: '', controller: function () { } })
         .when('/customer/:pageIndex?', { template: '', controller: function () { } });
-        //.otherwise({ redirectTo: '/home' });
+        .when('/splist/:pageIndex?', { template: '', controller: function () { } })
+        .otherwise({ redirectTo: '/home' });
     $stateProvider
          .state('home', {
              url: '/home',
              templateUrl: 'partials/home.html',
-             controller: DataStatisticsCtrl
+                        controller: DataStatisticsCtrl
          })
          .state('client', { url: '/client*path', templateUrl: 'partials/client.html', controller: ClientMainCtrl })
          .state('lakala', { url: '/lakala*path', templateUrl: 'partials/lakala.html', controller: LakalaCtrl })
@@ -96,5 +97,20 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter, $resturls) {
             temp = temp.substr(0, temp.length - str.length);
         }
         return temp;
+    }
+    //转化手机号 ey:13458680566 为 134*****566
+    $scope.ModifiedPhoneNum = function (str) {
+        if (str) {
+            if (str.length == 11) {
+                var mphone = str.substr(3, 5);
+                var phone = str.replace(mphone, "*****");
+                return phone;
+            }
+            else {
+                return str;
+            }
+        } else {
+            return '';
+        }
     }
 }

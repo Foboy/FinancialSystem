@@ -40,6 +40,7 @@ class user extends Controller
     	} else {
     		$result->ErrorMessage=FEEDBACK_LOGIN_FAILED;
     		$result->Error = ErrorType::LoginFailed;
+    		$result->ExMessage=$_SESSION;
     	}
     	
     	print json_encode ( $result ) ;

@@ -1,6 +1,6 @@
 <?php
 
-class Customers extends Controller {
+class customers extends Controller {
 	/**
 	 * 商家客户管理，包括公海客户，销售机会客户以及自有客户信息编辑
 	 */

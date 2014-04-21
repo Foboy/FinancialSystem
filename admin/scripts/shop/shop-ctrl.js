@@ -37,7 +37,18 @@ function ShopCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) 
           }
       });
   }
-	
+  $scope.ExportExcel = function () {
+
+      
+      $http.post($resturls["ExcelBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2 }).success(function (result) {
+          if (result.Error == 0) {
+             console.log(result);
+             window.open($resturls.excelbaseurl+"shop2excel.php");
+          } else {
+       	   console.log(1);
+          }
+      });
+  }
   $('#reservation').daterangepicker({
 			   showDropdowns:true,
 			   format: 'YYYY/MM/DD',
