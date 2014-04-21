@@ -63,21 +63,21 @@
 						<div class="col-md-5  form-horizontal">
 							<label class="col-md-3  control-label padding_null" style="text-align: left;">拉卡拉手续费率区间:</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control " ng-model="shopinfo.lakala1"  ng-pattern="/^([1-9][\d]{0,2}|0)(\.[\d]{1,2})?$/">
+								<input type="text" class="form-control " ng-model="shopinfo.lakala1"  ng-pattern="/^([\d]{1,2}|0)(\.[\d]{1,2})?$/">
 							</div>	
 							<label class="titlefont col-sm-1 control-label padding_null" style="text-align:center;">至</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control " ng-model="shopinfo.lakala2"  ng-pattern="/^([1-9][\d]{0,2}|0)(\.[\d]{1,2})?$/">
+								<input type="text" class="form-control " ng-model="shopinfo.lakala2"  ng-pattern="/^([\d]{1,2}|0)(\.[\d]{1,2})?$/">
 							</div>	
 						</div>
 						<div class="col-md-6 form-horizontal padding_null">
 							<label class="col-md-3 col-lg-3 control-label padding_null">POS机手续费率区间:</label>
 							<div class="col-md-3 padding_rightnull">
-								<input type="text" class="form-control " ng-model="shopinfo.post1" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+								<input type="text" class="form-control " ng-model="shopinfo.post1" ng-pattern="/^([\d]{1,2}|0)(\.[\d]{1,2})?$/">
 							</div>
 							<label class="titlefont col-sm-1 control-label" style="text-align:center;">至</label>
 							<div class="col-md-3 padding_null">
-								<input type="text" class="form-control " ng-model="shopinfo.post2" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+								<input type="text" class="form-control " ng-model="shopinfo.post2" ng-pattern="/^([\d]{1,2}|0)(\.[\d]{1,2})?$/">
 							</div>
 						</div>
 					</div>
@@ -168,12 +168,12 @@
       <div class="modal-body">
       <div class="row">
         <div class="form-group col-md-12  form-horizontal">
-                                            <label class="col-md-5">pos机手续费率</label>
-                                            <input  type="text" value="{{currentPostRate}}" ng-model="currentPostRate"  class="form-control col-md-7" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+                                            <label class="col-md-5">pos机手续费率(%)</label>
+                                            <input  type="text" value="{{currentPostRate}}" ng-model="currentPostRate"  class="form-control col-md-7" ng-pattern="/^([\d]{1,2}|0)(\.[\d]{1,2})?$/">
                                         </div>
                                           <div class="form-group col-md-12  form-horizontal">
-                                            <label class="col-md-5">拉卡拉手续费率</label>
-                                            <input type="text" value="{{currentLakalaRate}}" ng-model="currentLakalaRate"  class="form-control col-md-7" ng-pattern="/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/">
+                                            <label class="col-md-5">拉卡拉手续费率(%)</label>
+                                            <input type="text" value="{{currentLakalaRate}}" ng-model="currentLakalaRate"  class="form-control col-md-7" ng-pattern="/^([\d]{1,2}|0)(\.[\d]{1,2})?$/">
                                         </div>
       </div>
       <div class="modal-footer">
