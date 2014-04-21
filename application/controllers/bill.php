@@ -1,5 +1,5 @@
 <?php
-class Bill extends Controller {
+class bill extends Controller {
 	/**
 	 * 交易记录
 	 */

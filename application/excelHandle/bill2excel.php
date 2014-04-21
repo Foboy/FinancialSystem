@@ -18,4 +18,4 @@ $headArr=array(
 $bills_model = new BillsModel(new Database());
 $toexcel=new PHP2EXCEL();
 //printf(json_encode($bills_model->excelDownloadQuery()));
-$toexcel->getExcel('拉卡拉转账记录', $headArr, $bills_model->excelDownloadQuery());
+$toexcel->getExcel('lakala', $headArr, $bills_model->excelDownloadQuery());

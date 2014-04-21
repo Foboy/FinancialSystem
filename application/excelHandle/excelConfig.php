@@ -22,9 +22,9 @@ if (file_exists('../../vendor/autoload.php')) {
 
 
 
-require_once '../LIBS/PHP2EXCEL.php';
-require_once '../LIBS/Database.php';
-require_once '../LIBS/Session.php';
+require_once '../libs/PHP2EXCEL.php';
+require_once '../libs/Database.php';
+require_once '../libs/Session.php';
 require_once '../models/bills_model.php';
 // require_once '../LIBS/PHPExcel/Reader/Excel2007.php';
 // require_once '../LIBS/PHPExcel/Reader/Excel5.php';

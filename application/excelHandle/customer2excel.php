@@ -17,4 +17,4 @@ $headArr=array(
 $bills_model = new BillsModel(new Database());
 $toexcel=new PHP2EXCEL();
 //printf(json_encode($bills_model->excelDownloadQuery()));
-$toexcel->getExcel('用户消费记录', $headArr, $bills_model->excelDownloadQuery());
+$toexcel->getExcel('customer', $headArr, $bills_model->excelDownloadQuery());
