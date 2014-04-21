@@ -9,81 +9,80 @@
 <!-- Main content -->
 <div class="content">
 
+   <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
-            <!-- jQuery Knob -->
-            <div class="box box-solid">
-                <div class="box-header">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <h3 class="box-title">jQuery Knob</h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>消费趋势图
+                    <div class="pull-right">
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" ng-click="SaleTotalTrendGraph(1)" value="" checked="">昨日今日分析
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" ng-click="SaleTotalTrendGraph(2)" value="">最近七日分析
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" ng-click="SaleTotalTrendGraph(3)" value="">最近一个月分析
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                            <div style="display: inline; width: 90px; height: 90px;">
-                                <canvas width="90" height="90"></canvas>
-                                <input type="text" class="knob" value="30" data-width="90" data-height="90" data-fgcolor="#3c8dbc" style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background-image: none; font-weight: bold; font-style: normal; font-variant: normal; font-size: 18px; line-height: normal; font-family: Arial; text-align: center; color: rgb(60, 141, 188); padding: 0px; -webkit-appearance: none; background-position: initial initial; background-repeat: initial initial;">
-                            </div>
-                            <div class="knob-label">New Visitors</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                            <div style="display: inline; width: 90px; height: 90px;">
-                                <canvas width="90" height="90"></canvas>
-                                <input type="text" class="knob" value="70" data-width="90" data-height="90" data-fgcolor="#f56954" style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background-image: none; font-weight: bold; font-style: normal; font-variant: normal; font-size: 18px; line-height: normal; font-family: Arial; text-align: center; color: rgb(245, 105, 84); padding: 0px; -webkit-appearance: none; background-position: initial initial; background-repeat: initial initial;">
-                            </div>
-                            <div class="knob-label">Bounce Rate</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                            <div style="display: inline; width: 90px; height: 90px;">
-                                <canvas width="90" height="90"></canvas>
-                                <input type="text" class="knob" value="-80" data-min="-150" data-max="150" data-width="90" data-height="90" data-fgcolor="#00a65a" style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background-image: none; font-weight: bold; font-style: normal; font-variant: normal; font-size: 18px; line-height: normal; font-family: Arial; text-align: center; color: rgb(0, 166, 90); padding: 0px; -webkit-appearance: none; background-position: initial initial; background-repeat: initial initial;">
-                            </div>
-                            <div class="knob-label">Server Load</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                            <div style="display: inline; width: 90px; height: 90px;">
-                                <canvas width="90" height="90"></canvas>
-                                <input type="text" class="knob" value="40" data-width="90" data-height="90" data-fgcolor="#00c0ef" style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background-image: none; font-weight: bold; font-style: normal; font-variant: normal; font-size: 18px; line-height: normal; font-family: Arial; text-align: center; color: rgb(0, 192, 239); padding: 0px; -webkit-appearance: none; background-position: initial initial; background-repeat: initial initial;">
-                            </div>
-                            <div class="knob-label">Disk Space</div>
-                        </div>
-                        <!-- ./col -->
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-line-chart"></div>
                     </div>
-                    <!-- /.row -->
-
-                    <div class="row">
-                        <div class="col-xs-6 text-center">
-                            <div style="display: inline; width: 90px; height: 90px;">
-                                <canvas width="90" height="90"></canvas>
-                                <input type="text" class="knob" value="90" data-width="90" data-height="90" data-fgcolor="#932ab6" style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background-image: none; font-weight: bold; font-style: normal; font-variant: normal; font-size: 18px; line-height: normal; font-family: Arial; text-align: center; color: rgb(147, 42, 182); padding: 0px; -webkit-appearance: none; background-position: initial initial; background-repeat: initial initial;">
-                            </div>
-                            <div class="knob-label">Bandwidth</div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-xs-6 text-center">
-                            <div style="display: inline; width: 90px; height: 90px;">
-                                <canvas width="90" height="90"></canvas>
-                                <input type="text" class="knob" value="50" data-width="90" data-height="90" data-fgcolor="#39CCCC" style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background-image: none; font-weight: bold; font-style: normal; font-variant: normal; font-size: 18px; line-height: normal; font-family: Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none; background-position: initial initial; background-repeat: initial initial;">
-                            </div>
-                            <div class="knob-label">CPU</div>
-                        </div>
-                        <!-- ./col -->
-                    </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.box-body -->
+                <!-- /.panel-body -->
             </div>
-            <!-- /.box -->
+            <!-- /.panel -->
         </div>
-        <!-- /.col -->
-    </div> 
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    消费同比（消费年龄层）
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-pie-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    收银员销售情况
+                     <div class="btn-group btn-group-right">
+                         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                             {{CashierSaleConditionChose}}<span class="caret"></span>
+                         </button>
+                         <ul class="dropdown-menu" role="menu">
+                             <li><a ng-click="CashierSaleBarChart(1)">今日</a></li>
+                             <li><a ng-click="CashierSaleBarChart(2)">昨日</a></li>
+                             <li><a ng-click="CashierSaleBarChart(3)">最近一周</a></li>
+                             <li><a ng-click="CashierSaleBarChart(4)">最近一月</a></li>
+                         </ul>
+                     </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-bar-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+    <!-- /.row -->
 </div>
 <!-- /.content -->
