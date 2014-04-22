@@ -85,10 +85,16 @@ define('COOKIE_DOMAIN', '.localhost');
  * define('DB_PASS', 'xxx');
  */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', '192.168.0.62;port=3366');
+define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'gogotowncrm');
-define('DB_USER', 'crm');
-define('DB_PASS', 'crm123');
+define('DB_USER', 'root');
+define('DB_PASS', '111111');
+
+// define('DB_TYPE', 'mysql');
+// define('DB_HOST', '192.168.0.62;port=3366');
+// define('DB_NAME', 'gogotowncrm');
+// define('DB_USER', 'crm');
+// define('DB_PASS', 'crm123');
 
 /**
  * Configuration for: Hashing strength

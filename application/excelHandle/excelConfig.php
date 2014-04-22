@@ -7,10 +7,16 @@ ini_set('display_startup_errors', TRUE);
 // require '../config/urlconfig.php';
 // require '../config/config.php';
 define('DB_TYPE', 'mysql');
-define('DB_HOST', '192.168.0.62;port=3366');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'gogotowncrm');
 define('DB_USER', 'crm');
 define('DB_PASS', 'crm123');
+
+// define('DB_TYPE', 'mysql');
+// define('DB_HOST', '192.168.0.62;port=3366');
+// define('DB_NAME', 'gogotowncrm');
+// define('DB_USER', 'crm');
+// define('DB_PASS', 'crm123');
 
 // The auto-loader to load the php-login related internal stuff automatically
 // require '../config/autoload.php';

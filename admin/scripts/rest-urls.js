@@ -7,9 +7,10 @@
     angular.module('ngRestUrls', ['ng']).
       config(['$provide', function ($provide) {
           var resturls = {};
-          resturls.base = "http://192.168.0.62:81/FinancialSystem/index.php";
-          resturls.excelbaseurl = "http://192.168.0.62:81/FinancialSystem/application/excelHandle/";
-          //resturls.base = "http://localhost:8080/FinancialSystem/index.php";
+          resturls.base = "http://localhost/FinancialSystem/index.php";
+          resturls.excelbaseurl = "http://localhost/FinancialSystem/application/excelHandle/";
+//          resturls.base = "http://192.168.0.62:81/FinancialSystem/index.php";
+//          resturls.excelbaseurl = "http://192.168.0.62:81/FinancialSystem/application/excelHandle/";
           resturls.add = function (name, url) {
               resturls[name] = resturls.base + "?url=" + url;
           };
