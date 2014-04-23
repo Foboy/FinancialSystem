@@ -81,7 +81,7 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
                 Datas = [{ label: "今日销售总额", data: twodaysData.today, color: "#1ABC9C" }, { label: "昨日销售总额", data: twodaysData.yesterday, color: "#fa787e" }];
                 break;
             case 2://按日
-                var weekDatas = [[1, 7000], [2, 9000], [3, 6000], [4, 6000], [5, 4000], [6, 9000], [7, 15000]];
+                var weekDatas = [[11, 7000], [12, 9000], [13, 6000], [14, 6000], [15, 4000], [16, 9000], [17, 15000]];
                 Datas = [{ label: "时间区间内销售总额", data: weekDatas, color: "#1ABC9C" }];
                 break;
             case 3://按月
@@ -100,7 +100,9 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
             },
             xaxis: {
                 tickSize: 1,
-                tickFormatter: function (rule) {
+                tickFormatter: function (rule,obj) {
+                	console.log(rule);
+                  	console.log(obj);
                     if (type == 1) {
                         return rule + '时';
                     }
@@ -418,7 +420,7 @@ function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
                 Datas = [{ label: "今日销售总额", data: twodaysData.today, color: "#1ABC9C" }, { label: "昨日销售总额", data: twodaysData.yesterday, color: "#fa787e" }];
                 break;
             case 2://按日
-                var weekDatas = [[1, 7000], [2, 9000], [3, 6000], [4, 6000], [5, 4000], [6, 9000], [7, 15000]];
+                var weekDatas = [[16, 7000], [17, 9000], [18, 6000], [19, 6000], [20, 4000], [21, 9000], [22, 15000]];
                 Datas = [{ label: "时间区间内销售总额", data: weekDatas, color: "#1ABC9C" }];
                 break;
             case 3://按月

@@ -30,14 +30,14 @@ function LakalaCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope
        if (!pageIndex) 
     	   pageIndex = 0;
        
-       $http.post($resturls["ShopBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2,pageindex:pageIndex,pagesize: 2 }).success(function (result) {
+       $http.post($resturls["ShopBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2,pageindex:pageIndex,pagesize: 10 }).success(function (result) {
            if (result.Error == 0) {
                $scope.shopBills = result.Data;
                //$parent.shopBillsActpageIndex = pageIndex;
-               $parent.pages = utilities.paging(result.totalcount, pageIndex+1, 2, '#lakala/' + '{0}');
+               $parent.pages = utilities.paging(result.totalcount, pageIndex+1, 10, '#lakala/' + '{0}');
            } else {
                $scope.shopBills = [];
-               $parent.pages = utilities.paging(0, pageIndex+1, 2);
+               $parent.pages = utilities.paging(0, pageIndex+1, 10);
            }
        });
    }
