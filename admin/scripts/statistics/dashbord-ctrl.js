@@ -81,7 +81,7 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
                 Datas = [{ label: "今日销售总额", data: twodaysData.today, color: "#1ABC9C" }, { label: "昨日销售总额", data: twodaysData.yesterday, color: "#fa787e" }];
                 break;
             case 2://按日
-                var weekDatas = [[1, 7000], [2, 9000], [3, 6000], [4, 6000], [5, 4000], [6, 9000], [7, 15000]];
+                var weekDatas = [[1188860400, 7000], [1188946800, 9000], [1189033200, 6000], [1189119600, 6000]];
                 Datas = [{ label: "时间区间内销售总额", data: weekDatas, color: "#1ABC9C" }];
                 break;
             case 3://按月
@@ -99,17 +99,9 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
                 }
             },
             xaxis: {
-                tickSize: 1,
+                tickSize: 86400,
                 tickFormatter: function (rule) {
-                    if (type == 1) {
-                        return rule + '时';
-                    }
-                    else if (type == 2) {
-                        return rule + '日';
-                    }
-                    else {
-                        return rule + '月';
-                    }
+                    return $scope.TimestampToStr(rule, type);
                 }
             },  //指定固定的显示内容
             yaxis: {
@@ -331,12 +323,26 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
     $scope.ConsumerYear();
     $scope.CashierSaleBarChart(Date.parse(new Date()) / 1000, Date.parse(new Date()) / 1000);
 
+    $scope.TimestampToStr = function (timestamp, type) {
+        debugger;
+        var unixTimestamp = new Date(timestamp * 1000);
+        if (type == 1) {
+            var str = (unixTimestamp.getHours()) + '时';
+            return str;
+        }
+        else if (type == 2) {
+            var str = (unixTimestamp.getMonth() + 1) + '月' + unixTimestamp.getDate() + '日';
+            return str;
+        } else {
+            var str = (unixTimestamp.getMonth() + 1) + '月';
+            return str;
+        }
+    }
 }
 
 
 //商家统计dashboard的scope
-function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
-{
+function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
     //商家销售总额趋势图(默认昨天今天)
     $scope.SaleTotalTrendGraph = function (starttime, endtime) {
         $("#reservation").val('');
@@ -418,7 +424,7 @@ function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
                 Datas = [{ label: "今日销售总额", data: twodaysData.today, color: "#1ABC9C" }, { label: "昨日销售总额", data: twodaysData.yesterday, color: "#fa787e" }];
                 break;
             case 2://按日
-                var weekDatas = [[1, 7000], [2, 9000], [3, 6000], [4, 6000], [5, 4000], [6, 9000], [7, 15000]];
+                var weekDatas = [[1188860400, 7000], [1188946800, 9000], [1189033200, 6000], [1189119600, 6000]];
                 Datas = [{ label: "时间区间内销售总额", data: weekDatas, color: "#1ABC9C" }];
                 break;
             case 3://按月
@@ -436,17 +442,9 @@ function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
                 }
             },
             xaxis: {
-                tickSize: 1,
+                tickSize: 86400,
                 tickFormatter: function (rule) {
-                    if (type == 1) {
-                        return rule + '时';
-                    }
-                    else if (type == 2) {
-                        return rule + '日';
-                    }
-                    else {
-                        return rule + '月';
-                    }
+                    return $scope.TimestampToStr(rule, type);
                 }
             },  //指定固定的显示内容
             yaxis: {
@@ -477,7 +475,6 @@ function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
         }
         $.plot($("#flot-line-chart"), Datas, options);
     }
-
     //柱状图（收银员销售情况）
     $scope.CashierSaleBarChart = function (starttime, endtime) {
         $("#CashierTimeControl").val('');
@@ -616,15 +613,29 @@ function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
         };
         $.plot($("#flot-bar-chart"), Datas, barOptions);
     }
-   
+
+    $scope.TimestampToStr = function (timestamp, type) {
+        debugger;
+        var unixTimestamp = new Date(timestamp * 1000);
+        if (type == 1) {
+            var str = (unixTimestamp.getHours()) + '时';
+            return str;
+        }
+        else if (type == 2) {
+            var str = (unixTimestamp.getMonth() + 1) + '月' + unixTimestamp.getDate() + '日';
+            return str;
+        } else {
+            var str = (unixTimestamp.getMonth() + 1) + '月';
+            return str;
+        }
+    }
     //初始化调用
     $scope.SaleTotalTrendGraph(Date.parse(new Date((new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate() - 1)))) / 1000, Date.parse(new Date()) / 1000);
     $scope.CashierSaleBarChart(Date.parse(new Date()) / 1000, Date.parse(new Date()) / 1000);
 }
 
 
-function CustomerSpendingStatisticsCtrl($scope, $http, $location, $routeParams, $resturls)
-{
+function CustomerSpendingStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
     //商家销售总额趋势图(默认昨天今天)
     $scope.SaleTotalTrendGraph = function (starttime, endtime) {
         $("#reservation").val('');
@@ -706,7 +717,7 @@ function CustomerSpendingStatisticsCtrl($scope, $http, $location, $routeParams, 
                 Datas = [{ label: "今日销售总额", data: twodaysData.today, color: "#1ABC9C" }, { label: "昨日销售总额", data: twodaysData.yesterday, color: "#fa787e" }];
                 break;
             case 2://按日
-                var weekDatas = [[1, 7000], [2, 9000], [3, 6000], [4, 6000], [5, 4000], [6, 9000], [7, 15000]];
+                var weekDatas = [[1188860400, 7000], [1188946800, 9000], [1189033200, 6000], [1189119600, 6000]];
                 Datas = [{ label: "时间区间内销售总额", data: weekDatas, color: "#1ABC9C" }];
                 break;
             case 3://按月
@@ -724,17 +735,9 @@ function CustomerSpendingStatisticsCtrl($scope, $http, $location, $routeParams, 
                 }
             },
             xaxis: {
-                tickSize: 1,
+                tickSize: 86400,
                 tickFormatter: function (rule) {
-                    if (type == 1) {
-                        return rule + '时';
-                    }
-                    else if (type == 2) {
-                        return rule + '日';
-                    }
-                    else {
-                        return rule + '月';
-                    }
+                    return $scope.TimestampToStr(rule, type);
                 }
             },  //指定固定的显示内容
             yaxis: {
@@ -764,6 +767,22 @@ function CustomerSpendingStatisticsCtrl($scope, $http, $location, $routeParams, 
             }
         }
         $.plot($("#flot-line-chart"), Datas, options);
+    }
+
+    $scope.TimestampToStr = function (timestamp, type) {
+        debugger;
+        var unixTimestamp = new Date(timestamp * 1000);
+        if (type == 1) {
+            var str = (unixTimestamp.getHours()) + '时';
+            return str;
+        }
+        else if (type == 2) {
+            var str = (unixTimestamp.getMonth() + 1) + '月' + unixTimestamp.getDate() + '日';
+            return str;
+        } else {
+            var str = (unixTimestamp.getMonth() + 1) + '月';
+            return str;
+        }
     }
     //初始化调用
     $scope.SaleTotalTrendGraph(Date.parse(new Date((new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate() - 1)))) / 1000, Date.parse(new Date()) / 1000);
@@ -852,7 +871,7 @@ function TotalStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) 
                 Datas = [{ label: "今日销售总额", data: twodaysData.today, color: "#1ABC9C" }, { label: "昨日销售总额", data: twodaysData.yesterday, color: "#fa787e" }];
                 break;
             case 2://按日
-                var weekDatas = [[1, 7000], [2, 9000], [3, 6000], [4, 6000], [5, 4000], [6, 9000], [7, 15000]];
+                var weekDatas = [[1188860400, 7000], [1188946800, 9000], [1189033200, 6000], [1189119600, 6000]];
                 Datas = [{ label: "时间区间内销售总额", data: weekDatas, color: "#1ABC9C" }];
                 break;
             case 3://按月
@@ -870,17 +889,9 @@ function TotalStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) 
                 }
             },
             xaxis: {
-                tickSize: 1,
+                tickSize: 86400,
                 tickFormatter: function (rule) {
-                    if (type == 1) {
-                        return rule + '时';
-                    }
-                    else if (type == 2) {
-                        return rule + '日';
-                    }
-                    else {
-                        return rule + '月';
-                    }
+                    return $scope.TimestampToStr(rule, type);
                 }
             },  //指定固定的显示内容
             yaxis: {
@@ -911,7 +922,6 @@ function TotalStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) 
         }
         $.plot($("#flot-line-chart"), Datas, options);
     }
-
     //消费同比饼图gogo客户
     $scope.ConsumerYear = function () {
         var data = [{
@@ -1095,6 +1105,22 @@ function TotalStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) 
             }
         };
         $.plot($("#flot-bar-chart"), Datas, barOptions);
+    }
+
+    $scope.TimestampToStr = function (timestamp, type) {
+        debugger;
+        var unixTimestamp = new Date(timestamp * 1000);
+        if (type == 1) {
+            var str = (unixTimestamp.getHours()) + '时';
+            return str;
+        }
+        else if (type == 2) {
+            var str = (unixTimestamp.getMonth() + 1) + '月' + unixTimestamp.getDate() + '日';
+            return str;
+        } else {
+            var str = (unixTimestamp.getMonth() + 1) + '月';
+            return str;
+        }
     }
 
     //初始化调用
