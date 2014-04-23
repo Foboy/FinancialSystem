@@ -289,6 +289,7 @@ class bill extends Controller {
    	$result->Error=ErrorType::Success;
    	print json_encode($result);
    }
+ 
 
 
 }

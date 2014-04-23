@@ -25,10 +25,10 @@ function ShopListCtrl($scope, $http, $location, $routeParams, $resturls,$rootSco
           if (result.Error == 0) {
               $scope.shopList = result.Data;
               //$parent.shopBillsActpageIndex = pageIndex;
-              $parent.pages = utilities.paging(result.totalcount, pageIndex+1, 2, '#splist/' + '{0}');
+              $parent.pages = utilities.paging(result.totalcount, pageIndex+1, 10, '#splist/' + '{0}');
           } else {
               $scope.shopBills = [];
-              $parent.pages = utilities.paging(0, pageIndex+1, 2);
+              $parent.pages = utilities.paging(0, pageIndex+1, 10);
           }
       });
   }

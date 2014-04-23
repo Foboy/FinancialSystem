@@ -292,6 +292,14 @@ $sname " );
 		$result->Data = $objects;
 		return $result;
 	}
+	//查询全部bills
+	public function searchReport($stime,$etime) {
+$sql="SELECT * FROM Crm_Bills where sys_time >= '$stime' and sys_time <= '$etime' ";
+		$query = $this->db->prepare ( $sql);
+		$query->execute ();
+		$objects = $query->fetchAll ();
+		return  $objects;
+	}
   
 }
 
