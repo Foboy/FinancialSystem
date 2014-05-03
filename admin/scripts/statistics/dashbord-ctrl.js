@@ -137,13 +137,16 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
         	 switch(type)
         	 {
         	 case 1:
-        		 ts = 3600;
+        		ts = 3600;
+        		 //ts = [1,"hour"];
         		 break;
         	 case 2:
-        		 ts = 86400;
+        		ts = 86400;
+        		 //ts = [1,"day"];
         		 break;
         	 case 3:
-        		 ts = 86400*31;
+        		 ts = 86400*30;
+        		 //ts = [1,"month"];
         		 break;
         	 };
     
@@ -157,6 +160,7 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
                  }
              },
              xaxis: {
+            	// minTickSize:ts,
                  tickSize: ts,
                  tickFormatter: function (rule) {
                      return $scope.TimestampToStr(rule, type);

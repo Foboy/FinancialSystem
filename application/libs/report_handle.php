@@ -142,7 +142,7 @@ class report_handle {
 						$amount = $amount + $data [$j] ["Amount"];
 					}
 				}
-			  $dtime =	mktime(0,0,0,$i,0,( int ) date ( "Y", $stime )+$a);
+			  $dtime =	mktime(0,0,0,$i+1,0,( int ) date ( "Y", $stime )+$a);
 				array_push ( $arr, $dtime, $amount );
 				array_push ( $resut, $arr );
 			}
