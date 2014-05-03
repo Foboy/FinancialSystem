@@ -6,8 +6,8 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
         .when('/lakala/:pageIndex?', { template: '', controller: function () { } })
         .when('/shop/:pageIndex?', { template: '', controller: function () { } })
         .when('/customer/:pageIndex?', { template: '', controller: function () { } })
-        .when('/splist/:pageIndex?', { template: '', controller: function () { } });
-        //.otherwise({ redirectTo: '/home' });
+        .when('/splist/:pageIndex?', { template: '', controller: function () { } })
+        .otherwise({ redirectTo: '/home' });
     $stateProvider
          .state('home', {
              url: '/home',
@@ -60,6 +60,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter, $resturls) {
     
     // unix时间戳转化为 eg:'2014-04-08'
     $scope.timestamptostr = function (timestamp) {
+    	timestamp=timestamp+"";
         if (timestamp.indexOf('-') == -1) {
             var month = 0;
             var day = 0;
