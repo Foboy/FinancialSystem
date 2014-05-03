@@ -26,7 +26,7 @@ function ShopCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) 
       if (!pageIndex) 
    	   pageIndex = 0;
       
-      $http.post($resturls["ShopBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2,pageindex:pageIndex,pagesize: 10 }).success(function (result) {
+      $http.post($resturls["ShopBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2,area_id:$scope.csr_id,pageindex:pageIndex,pagesize: 10 }).success(function (result) {
           if (result.Error == 0) {
               $scope.shopBills = result.Data;
               //$parent.shopBillsActpageIndex = pageIndex;
@@ -40,7 +40,7 @@ function ShopCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) 
   $scope.ExportExcel = function () {
 
       
-      $http.post($resturls["ExcelBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2 }).success(function (result) {
+      $http.post($resturls["ExcelBills"], { sname: $scope.shopinfo.skey, shop_id: 0, customer_id: 0, pay_mothed: $scope.cpt_id,  cash1: $scope.shopinfo.cash1, cash2: $scope.shopinfo.cash2,go_coin1: $scope.shopinfo.GO1, go_coin2: $scope.shopinfo.GO2,type:$scope.cct_id,create_time1:create_time1,create_time2:create_time2,area_id:$scope.csr_id}).success(function (result) {
           if (result.Error == 0) {
              console.log(result);
              window.open($resturls.excelbaseurl+"shop2excel.php");
@@ -89,11 +89,18 @@ function ShopCtrl($scope, $http, $location, $routeParams, $resturls,$rootScope) 
   $scope.cpt_id=0;
   
   //获取商圈范围
-  $scope.ShopRange=[
-                    {"id":1,"name":"金牛1"},
-                          {"id":2,"name":"万达"},
-                          {"id":3,"name":"天府广场"}
-                          ];
+  $scope.ShopRange=[];
+	 $http.post($resturls["SearchArea"],{}).success(function (result) {
+      if (result.Error == 0) {
+     	 $scope.ShopRange=result.Data;
+          
+      } else {
+          $scope.showerror = true;
+          $.scojs_message('服务器忙，请稍后重试', $.scojs_message.TYPE_ERROR);
+      }
+  }).error(function (data, status, headers, config) {
+      $.scojs_message('服务器忙，请稍后重试', $.scojs_message.TYPE_ERROR);
+  });
   $scope.ChooseShopRange=function(data)
   {
   //	$scope.csr_name=data.name;

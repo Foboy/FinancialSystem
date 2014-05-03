@@ -85,6 +85,12 @@ class bill extends Controller {
 			print json_encode ( $result );
 			return;
 		}
+		if (! isset ( $_POST ['area_id'] )) {
+			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage = FEEDBACK_PARMS_FAILED;
+			print json_encode ( $result );
+			return;
+		}
 		if (! isset ( $_POST ['pageindex'] )) {
 			$result->Error = ErrorType::RequestParamsFailed;
 			$result->ErrorMessage = FEEDBACK_PARMS_FAILED;
@@ -100,7 +106,7 @@ class bill extends Controller {
 		
 		$bills_model = $this->loadModel ( 'Bills' );
 		
-		$result = $bills_model->searchByPages ( $_POST ['sname'], $_POST ['shop_id'], $_POST ['customer_id'], $_POST ['pay_mothed'], $_POST ['cash1'], $_POST ['cash2'], $_POST ['go_coin1'], $_POST ['go_coin2'], $_POST ['type'], $_POST ['create_time1'], $_POST ['create_time2'], $_POST ['pageindex'], $_POST ['pagesize'] );
+		$result = $bills_model->searchByPages ( $_POST ['sname'], $_POST ['shop_id'], $_POST ['customer_id'], $_POST ['pay_mothed'], $_POST ['cash1'], $_POST ['cash2'], $_POST ['go_coin1'], $_POST ['go_coin2'], $_POST ['type'], $_POST ['create_time1'], $_POST ['create_time2'], $_POST ['area_id'],$_POST ['pageindex'], $_POST ['pagesize'] );
 		$result->Error = ErrorType::Success;
 		
 		print json_encode ( $result );
@@ -179,10 +185,16 @@ class bill extends Controller {
 			print json_encode ( $result );
 			return;
 		}
+		if (! isset ( $_POST ['area_id'] )) {
+			$result->Error = ErrorType::RequestParamsFailed;
+			$result->ErrorMessage = FEEDBACK_PARMS_FAILED;
+			print json_encode ( $result );
+			return;
+		}
 		
 		$bills_model = $this->loadModel ( 'Bills' );
 		
-		$bills_model->searchForExcel ( $_POST ['sname'], $_POST ['shop_id'], $_POST ['customer_id'], $_POST ['pay_mothed'], $_POST ['cash1'], $_POST ['cash2'], $_POST ['go_coin1'], $_POST ['go_coin2'], $_POST ['type'], $_POST ['create_time1'], $_POST ['create_time2'] );
+		$bills_model->searchForExcel ( $_POST ['sname'], $_POST ['shop_id'], $_POST ['customer_id'], $_POST ['pay_mothed'], $_POST ['cash1'], $_POST ['cash2'], $_POST ['go_coin1'], $_POST ['go_coin2'], $_POST ['type'], $_POST ['create_time1'], $_POST ['create_time2'] ,$_POST ['area_id'] );
 		$result->Error=ErrorType::Success;
 		print json_encode($result);
 	}
@@ -286,6 +298,17 @@ class bill extends Controller {
    	$Shops_model = $this->loadModel ( 'Shops' );
    	
    	$Shops_model->updateRate ( $_POST ['shop_id'],  $_POST ['pos_rate'],  $_POST ['lakala_rate']);
+   	$result->Error=ErrorType::Success;
+   	print json_encode($result);
+   }
+   
+   //获取商圈
+   public function  SearchArea()
+   {
+   	$result = new DataResult ();
+   	$Shops_model = $this->loadModel ( 'Shops' );
+   
+   	$result = $Shops_model->SearchArea ();
    	$result->Error=ErrorType::Success;
    	print json_encode($result);
    }

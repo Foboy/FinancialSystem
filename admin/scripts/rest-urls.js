@@ -41,10 +41,12 @@
           resturls.add("BillsToExcel", "bill/excelDownload");//导出EXCEL
           resturls.add("ShopList", "bill/searchShopList");//查询商家列表
           resturls.add("SetShopRate", "bill/SetShopRate");//设置商家手续费率
+          resturls.add("SearchArea", "bill/SearchArea");//设置商家手续费率
           
           //主页
           resturls.add("SaleTotalTrendGraphByTime", "home/SaleTotalTrendGraphByTime");//昨日今日销售分析统计 (每天24小时)
-          resturls.add("AppuserTrendGraphByTime", "home/AppuserTrendGraphByTime");//昨日今日销售分析统计 (每天24小时)
+          resturls.add("AppuserTrendGraphByTime", "home/AppuserTrendGraphByTime");//收银员APP
+          resturls.add("getHeaderNumber","home/getHeaderNumber");
           
           $provide.constant('$resturls', resturls);
 

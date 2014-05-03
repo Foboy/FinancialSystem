@@ -1,5 +1,25 @@
 ﻿//数据统计scope
 function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
+	$scope.billnum=0;
+	$scope.avgsrate=0;
+	$scope.newshops=0;
+	$scope.newcustomers=0;
+	 $http.post($resturls["getHeaderNumber"],{}).success(function (result) {
+         if (result.Error == 0) {
+        		$scope.billnum=result.Data.billnum;
+        		$scope.avgsrate=result.Data.avgsrate;
+        		$scope.newshops=result.Data.newshops;
+        		$scope.newcustomers=result.Data.newcustomers;
+             
+         } else {
+             $scope.showerror = true;
+             $.scojs_message('服务器忙，请稍后重试', $.scojs_message.TYPE_ERROR);
+         }
+     }).error(function (data, status, headers, config) {
+         $.scojs_message('服务器忙，请稍后重试', $.scojs_message.TYPE_ERROR);
+     });
+	
+	
     //商家销售总额趋势图(默认昨天今天)
     $scope.SaleTotalTrendGraph = function () {
         $("#reservation").val('');

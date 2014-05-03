@@ -61,7 +61,7 @@ class BillsModel {
 	
 	
 	// 分页查询bills
-	public function searchByPages($sname,$shop_id,$customer_id,$pay_mothed,$cash1,$cash2,$go_coin1,$go_coin2,$type,$create_time1, $create_time2,$pageindex, $pagesize) {
+	public function searchByPages($sname,$shop_id,$customer_id,$pay_mothed,$cash1,$cash2,$go_coin1,$go_coin2,$type,$create_time1, $create_time2,$area_id,$pageindex, $pagesize) {
 		$result = new PageDataResult ();
 		$lastpagenum = $pageindex*$pagesize;
 		
@@ -96,7 +96,7 @@ class BillsModel {
 		}
 		
 		
-		$sql = " select 
+		$sql = " select * from ( select 
     *
 from
     (select 
@@ -109,7 +109,8 @@ from
             a.Type,
             a.Amount,
             a.Create_Time,
-            b.name shop_name
+            b.name shop_name,
+            b.area_id
     FROM
         (select 
         *
@@ -127,18 +128,20 @@ from
     left join Crm_Shops b ON a.shop_id = b.id) aa
         left join
     Crm_Gogo_Customers bb ON aa.customer_id = bb.id
-$sname order by aa.create_time desc limit $lastpagenum,$pagesize" ;
+$sname ) aaa where ( aaa.area_id=:area_id or :area_id=0) order by aaa.create_time desc limit $lastpagenum,$pagesize" ;
 		//print $sql;
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 ':shop_id' => $shop_id,
                    ':customer_id' => $customer_id,
                    ':pay_mothed' => $pay_mothed,
-                   ':ptype' => $type
+                   ':ptype' => $type,
+				':area_id' => $area_id
 		) );
 		$objects = $query->fetchAll ();
 		$query = $this->db->prepare ( " select 
-    count(*)
+    count(*) from (select 
+    *
 from
     (select 
 				a.lakala_order_no,
@@ -150,7 +153,8 @@ from
             a.Type,
             a.Amount,
             a.Create_Time,
-            b.name shop_name
+            b.name shop_name,
+            b.area_id
     FROM
         (select 
         *
@@ -168,12 +172,13 @@ from
     left join Crm_Shops b ON a.shop_id = b.id) aa
         left join
     Crm_Gogo_Customers bb ON aa.customer_id = bb.id
-$sname " );
+$sname ) aaa where  ( aaa.area_id=:area_id or :area_id=0)" );
 		$query->execute ( array (
 ':shop_id' => $shop_id,
                    ':customer_id' => $customer_id,
                    ':pay_mothed' => $pay_mothed,
-                   ':ptype' => $type
+                   ':ptype' => $type,
+				':area_id' => $area_id
 		) );
 		$totalcount = $query->fetchColumn ( 0 );
 		
@@ -185,7 +190,7 @@ $sname " );
 		return $result;
 	}
 	// 分页查询bills
-	public function searchForExcel($sname,$shop_id,$customer_id,$pay_mothed,$cash1,$cash2,$go_coin1,$go_coin2,$type,$create_time1, $create_time2) {
+	public function searchForExcel($sname,$shop_id,$customer_id,$pay_mothed,$cash1,$cash2,$go_coin1,$go_coin2,$type,$create_time1, $create_time2,$area_id) {
 		
 		$result=null;
 	
@@ -220,7 +225,7 @@ $sname " );
 		}
 	
 	
-		$sql = " select
+		$sql = " select * from (select
 		*
 		from
 		(select
@@ -233,7 +238,8 @@ $sname " );
 		a.Type,
 		a.Amount,
 		a.Create_Time,
-		b.name shop_name
+		b.name shop_name,
+            b.area_id
 		FROM
 		(select
 		*
@@ -251,7 +257,7 @@ $sname " );
 		left join Crm_Shops b ON a.shop_id = b.id) aa
 		left join
 		Crm_Gogo_Customers bb ON aa.customer_id = bb.id
-		$sname order by aa.create_time desc " ;
+		$sname ) aaa where ( aaa.area_id=:area_id or :area_id=0) order by aaa.create_time desc " ;
 		//print $sql;
 // 		$query = $this->db->prepare ( $sql );
 // 		$query->execute ( array (
@@ -270,7 +276,8 @@ $sname " );
 		':shop_id' => $shop_id,
 		':customer_id' => $customer_id,
 		':pay_mothed' => $pay_mothed,
-		':ptype' => $type
+		':ptype' => $type,
+				':area_id' => $area_id
 		);
 	}
 	

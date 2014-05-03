@@ -98,5 +98,37 @@ class home extends Controller {
 		
 		print json_encode ( $result );
 	}
+	
+	public  function getHeaderNumber()
+	{
+		$result = new DataResult ();
+		$result->Data=array(
+			"billnum"=>home::getBillNumsSevenDays(),
+				"avgsrate"=>home::getAvgsRate(),
+				"newshops"=>home::getNewShopsSevenDays(),
+				"newcustomers"=>home::getNewCustomersSevenDays()
+		);
+		print json_encode($result);
+	}
+
+	
+	public function getBillNumsSevenDays()
+	{
+		return 55;
+	}
+	public function getAvgsRate()
+	{
+		return 33;
+	}
+	public function getNewShopsSevenDays()
+	{
+		return 44;
+	}
+	public function getNewCustomersSevenDays()
+	{
+		return 22;
+	}
+	
+
 }
 
