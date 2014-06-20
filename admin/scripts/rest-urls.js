@@ -22,7 +22,7 @@
           // 主模块
           resturls.add("GetCurrentUser", "user/getCurrentUser");
           resturls.add("Login", "user/finacillogin");
-
+          resturls.add("LoginOut", "user/logout");//退出登陆
 
           // 客户管理
 

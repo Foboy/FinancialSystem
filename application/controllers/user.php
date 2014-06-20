@@ -25,7 +25,7 @@ class user extends Controller
     	$result->Data=$login_successful;
     	if ($login_successful) {
     		
-    		if($_SESSION ['user_type']!=4 and $_SESSION ['user_type']!=5)
+    		if($_SESSION ["fuser_type"]!=4 and $_SESSION ["fuser_type"]!=5)
     		{
     			$result->ErrorMessage=FEEDBACK_USER_ACCESSDENIED;
     			$result->Error = ErrorType::Accessdenied;
@@ -33,7 +33,7 @@ class user extends Controller
     			return ;
     		}else 
     		{
-    		$result->Data=$_SESSION ['user_type'];
+    		$result->Data=$_SESSION ['fuser_type'];
     		
     		$result->Error = ErrorType::Success;
     		}
@@ -99,13 +99,13 @@ class user extends Controller
     public  function  getCurrentUser()
     {
     	$result = new DataResult ();
-    	if (! isset ( $_SESSION["user_id"] ) or empty ( $_SESSION["user_id"] )) {
+    	if (! isset ( $_SESSION["fuser_id"] ) or empty ( $_SESSION["fuser_id"] )) {
     		$result->Error = ErrorType::Unlogin;
     		print json_encode ( $result );
     		return ;
     	}
     	$user_model = $this->loadModel('Users');
-    	$result = $user_model->get($_SESSION["user_id"]);
+    	$result = $user_model->get($_SESSION["fuser_id"]);
         $result->Error = ErrorType::Success;
     	print  json_encode ( $result ) ;
     }

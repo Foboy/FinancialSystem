@@ -11,7 +11,7 @@ class home extends Controller {
 	public function SaleTotalTrendGraphByTime() {
 		$result = new DataResult ();
 		
-		if (! isset ( $_SESSION ["user_shop"] ) or empty ( $_SESSION ["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return;
@@ -35,10 +35,10 @@ class home extends Controller {
 		
 		$days = round ( ($etime - $stime) / (24 * 3600) );
 		if ($days < 2) {
-			$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $etime ), date ( "Y-m-d H:i:s", $etime + 24 * 3600 - 1 ), $_SESSION ["user_shop"] );
+			$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $etime ), date ( "Y-m-d H:i:s", $etime + 24 * 3600 - 1 ), $_SESSION["fuser_shop"] );
 			$today = report_handle::reportinit ( "", $data, $etime, $etime,"");
 			
-			$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $stime ), date ( "Y-m-d H:i:s", $stime + 24 * 3600 - 1 ), $_SESSION ["user_shop"] );
+			$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $stime ), date ( "Y-m-d H:i:s", $stime + 24 * 3600 - 1 ), $_SESSION["fuser_shop"] );
 			$yesterday = report_handle::reportinit ( "", $data, $stime, $stime ,"");
 			
 			$result->Data = array (
@@ -47,7 +47,7 @@ class home extends Controller {
 					"yesterday" => $yesterday ["data"] 
 			);
 		} else {
-			$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $stime ), date ( "Y-m-d H:i:s", $etime ), $_SESSION ["user_shop"] );
+			$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $stime ), date ( "Y-m-d H:i:s", $etime ), $_SESSION["fuser_shop"] );
 			$res = report_handle::reportinit ( "", $data, $stime, $etime ,"");
 			
 			$result->Data = array (
@@ -61,7 +61,7 @@ class home extends Controller {
 	public function AppuserTrendGraphByTime() {
 		$result = new DataResult ();
 		
-		if (! isset ( $_SESSION ["user_shop"] ) or empty ( $_SESSION ["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return;
@@ -83,8 +83,8 @@ class home extends Controller {
 		
 		$bills_model = $this->loadModel ( 'Bills' );
 		
-		$arr_users = $bills_model->searchReportofAppUser ( $_SESSION ["user_shop"] );
-		$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $stime ), date ( "Y-m-d H:i:s", $etime ), $_SESSION ["user_shop"] );
+		$arr_users = $bills_model->searchReportofAppUser ( $_SESSION["fuser_shop"] );
+		$data = $bills_model->searchReport ( date ( "Y-m-d H:i:s", $stime ), date ( "Y-m-d H:i:s", $etime ), $_SESSION["fuser_shop"] );
 		
 		$arr_us = array ();
 		for($i = 0; $i < count ( $arr_users ); $i ++) {

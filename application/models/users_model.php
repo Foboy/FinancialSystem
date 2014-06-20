@@ -197,11 +197,11 @@ class UsersModel {
 			
 			// login process, write the user data into session
 			Session::init ();
-			Session::set ( 'user_logged_in', true );
-			Session::set ( 'user_id', $result->ID );
-			Session::set ( 'user_name', $result->Account );
-			Session::set ( 'user_shop', $result->Shop_ID );
-			Session::set ( 'user_type', $result->Type );
+			Session::set ( 'fuser_logged_in', true );
+			Session::set ( 'fuser_id', $result->ID );
+			Session::set ( 'fuser_name', $result->Account );
+			Session::set ( 'fuser_shop', $result->Shop_ID );
+			Session::set ( 'fuser_type', $result->Type );
 			// put native avatar path into session
 			// Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
@@ -325,11 +325,11 @@ class UsersModel {
 			// TODO: this block is same/similar to the one from login(), maybe we should put this in a method
 			// write data into session
 			Session::init ();
-			Session::set ( 'user_logged_in', true );
-			Session::set ( 'user_id', $result->ID );
-			Session::set ( 'user_name', $result->Account );
-			Session::set ( 'user_shop', $result->Shop_ID );
-			Session::set ( 'user_type', $result->Type );
+			Session::set ( 'fuser_logged_in', true );
+			Session::set ( 'fuser_id', $result->ID );
+			Session::set ( 'fuser_name', $result->Account );
+			Session::set ( 'fuser_shop', $result->Shop_ID );
+			Session::set ( 'fuser_type', $result->Type );
 			// put native avatar path into session
 			// Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
@@ -416,7 +416,7 @@ class UsersModel {
 			
 			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_FIELD_EMPTY;
 		} 
-		elseif (empty ( $_SESSION["user_shop"] )) {
+		elseif (empty ( $_SESSION["fuser_shop"] )) {
 			
 			$_SESSION ["feedback_negative"] [] = FEEDBACK_SHOPID_FIELD_EMPTY;
 		} elseif ($_POST ['user_password_new'] !== $_POST ['user_password_repeat']) {
@@ -437,7 +437,7 @@ class UsersModel {
 			$user_name = strip_tags ( $_POST ['user_name'] );
 			$user_account = strip_tags ( $_POST ['user_account'] );
 			$user_type = intval ( $_POST ['user_type'] );
-			$shop_id = intval ( $_SESSION["user_shop"] );
+			$shop_id = intval ( $_SESSION["fuser_shop"] );
 			
 			// crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
 			// hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
