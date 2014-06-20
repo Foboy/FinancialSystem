@@ -169,12 +169,12 @@ class UsersModel {
 				':user_name' => $_POST ['user_name'] 
 		) );
 		$count = $sth->rowCount ();
-		$_SESSION ["feedback_negative"] ="查询用户数量".$count;
+		//$_SESSION ["feedback_negative"] ="查询用户数量".$count;
 		// if there's NOT one result
 		if ($count <= 0) {
 			// was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
 			// to prevent potential attackers showing if the user exists
-			//$_SESSION ["feedback_negative"] [] = FEEDBACK_LOGIN_FAILED;
+			$_SESSION ["feedback_negative"] = "用户不存在";
 			return false;
 		}
 		
