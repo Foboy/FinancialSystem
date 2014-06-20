@@ -91,7 +91,7 @@
                     <li class="dropdown user user-menu">
                         <a  class="dropdown-toggle" data-toggle="dropdown">
                             <i class="glyphicon glyphicon-user"></i>
-                            <span>Jane Doe
+                            <span>{{currentuser.Name}} 
 								<i class="caret"></i>
                             </span>
                         </a>
@@ -121,12 +121,9 @@
                         <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                     </div>
                     <div class="pull-left info">
-                        <p>Hello, Jane</p>
+                        <p>您好, {{currentuser.Name}} </p>
 
-                        <a >
-                            <i class="fa fa-circle text-success"></i>
-                            Online
-                        </a>
+              
                     </div>
                 </div>
 
@@ -164,12 +161,7 @@
                                     设置商家手续费
                                 </a>
                             </li>
-                            <li>
-                                <a href="#/sp_statistics">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    统计
-                                </a>
-                            </li>
+                          
                         </ul>
                     </li>
 
@@ -187,21 +179,9 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="#/cus_statistics">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    统计
-                                </a>
-                            </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#/total_statistics">
-                            <i class="fa fa-th"></i>
-                            <span>综合统计</span>
-
-                        </a>
-                    </li>
+                   
                     <li ng-show="currentuser.Type==4?'true':'false'">
                         <a href="#/permissions">
                             <i class="fa fa-th"></i>
