@@ -23,7 +23,7 @@ function AcountCtrl($scope, $http, $location, $routeParams, $resturls) {
     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
     //弹出添加或编辑用户账号窗口
     $scope.ShowAddUserAccountModal = function (data, usertype) {
-        console.log(data);
+        //console.log(data);
         if (data) {
             $scope.UserAccount = data;
         } else {
@@ -42,11 +42,11 @@ function AcountCtrl($scope, $http, $location, $routeParams, $resturls) {
         data.State = data.State == 1 ? 2 : 1;
         $http.post($resturls["UpdateUserState"], { user_id: data.ID, state: data.State }).success(function (result) {
             if (result.Error == 0) {
-                alert(result.ErrorMessage);
+               // alert(result.ErrorMessage);
                 $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
             }
             else {
-                alert(result.ErrorMessage);
+               // alert(result.ErrorMessage);
                 $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
             }
         });
@@ -60,11 +60,11 @@ function AddUserAccountCtrl($scope, $http, $location, $routeParams, $resturls) {
             $scope.showerror = false;
             $http.post($resturls["AddUserAccount"], { user_type: 5, user_name: data.Name, user_account: data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
                 if (result.Error == 0) {
-                    alert("success");
+                    //alert("success");
                     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
                     $("#AddUsermodal").modal("hide");
                 } else {
-                    alert(result.ErrorMessage);
+                   // alert(result.ErrorMessage);
                     $scope.showerror = true;
                 }
             });
@@ -78,11 +78,11 @@ function AddUserAccountCtrl($scope, $http, $location, $routeParams, $resturls) {
             $scope.showerror = false;
             $http.post($resturls["UpdateUserAccount"], { user_type: 5, user_name: data.Name, user_account: data.Account, user_password_new: data.Password, user_password_repeat: data.Password }).success(function (result) {
                 if (result.Error == 0) {
-                    alert("success");
+                    //alert("success");
                     $scope.loadUserAccountSortList($routeParams.pageIndex || 1);
                     $("#AddUsermodal").modal("hide");
                 } else {
-                    alert(result.ErrorMessage);
+                   // alert(result.ErrorMessage);
                     $scope.showerror = true;
                 }
             });
@@ -99,10 +99,10 @@ function RestPasswordCtrl($scope, $http, $location, $routeParams, $resturls) {
             $scope.showerror = false;
             $http.post($resturls["RestPassword"], { user_id: data.ID, user_password_new: data.NewPassword, user_password_repeat: data.NewPassword }).success(function (result) {
                 if (result.Error == 0) {
-                    alert("success"); 
+                   // alert("success"); 
                     $("#RestPwdModal").modal("hide");
                 } else {
-                    alert("e");
+                    //alert("e");
                     $scope.showerror = true;
                 }
             });

@@ -15,6 +15,6 @@ function ShopStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
             });
   
     }
-  
+   
   
 };

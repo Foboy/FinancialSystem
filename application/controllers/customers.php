@@ -1,6 +1,6 @@
 <?php
 
-class Customers extends Controller {
+class customers extends Controller {
 	/**
 	 * 商家客户管理，包括公海客户，销售机会客户以及自有客户信息编辑
 	 */
@@ -10,7 +10,7 @@ class Customers extends Controller {
 		// VERY IMPORTANT: All controllers/areas that should only be usable by logged-in users
 		// need this line! Otherwise not-logged in users could do actions. If all of your pages should only
 		// be usable by logged-in users: Put this line into libs/Controller->__construct
-		// Auth::handleLogin();
+		Auth::handleLogin();
 	}
 
 	/*
@@ -40,7 +40,7 @@ class Customers extends Controller {
 	public function update() {
 		$result = new DataResult ();
 		
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -94,7 +94,7 @@ class Customers extends Controller {
 	public function del() {
 		$result = new DataResult ();
 		
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -120,7 +120,7 @@ class Customers extends Controller {
 	public function addPrivateCustomer() {
 		$result = new DataResult ();
 		
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -156,7 +156,7 @@ class Customers extends Controller {
 		if($customer_id!=0)
 		{
 		$shopcustomers_model = $this->loadModel ( 'ShopCustomers' );
-		 $shopcustomers_model->insert($_SESSION["user_shop"],$customer_id,CustomerFromType::PrivateCustomer,CustomerType::PrivateCustomer,time());
+		 $shopcustomers_model->insert($_SESSION["fuser_shop"],$customer_id,CustomerFromType::PrivateCustomer,CustomerType::PrivateCustomer,time());
 		}
 		$result->Data=$customer_id;
 		print json_encode ( $result );
@@ -170,7 +170,7 @@ class Customers extends Controller {
 		
 		$result = new PageDataResult ();
 		
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -201,7 +201,7 @@ class Customers extends Controller {
 
 		$shopcustomers_model = $this->loadModel ( 'ShopCustomers' );
 		
-		$result = $shopcustomers_model->searchPrivateByPages ($_SESSION["user_shop"], $_POST ['name'], $_POST ['sex'], $_POST ['phone'],   $_POST ['pageindex'] , 1 );
+		$result = $shopcustomers_model->searchPrivateByPages ($_SESSION["fuser_shop"], $_POST ['name'], $_POST ['sex'], $_POST ['phone'],   $_POST ['pageindex'] , 1 );
 		$result->Error = ErrorType::Success;
 		
 	
@@ -214,7 +214,7 @@ class Customers extends Controller {
 	public function searchGOGOBP() {
 	
 		$result = new PageDataResult ();
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -248,7 +248,7 @@ class Customers extends Controller {
 	
 		$shopcustomers_model = $this->loadModel ( 'ShopCustomers' );
 	
-		$result = $shopcustomers_model->searchGOGOCustomerByPages ($_SESSION["user_shop"], $_POST ['name'], $_POST ['sex'], $_POST ['phone'], $_POST ['type'], $_POST ['pageindex'] , 20 );
+		$result = $shopcustomers_model->searchGOGOCustomerByPages ($_SESSION["fuser_shop"], $_POST ['name'], $_POST ['sex'], $_POST ['phone'], $_POST ['type'], $_POST ['pageindex'] , 20 );
 		$result->Error = ErrorType::Success;
 	
 		print  json_encode ( $result );
@@ -261,7 +261,7 @@ class Customers extends Controller {
 	public function setPshopToChance() {
 		$result = new DataResult ();
 	
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -275,7 +275,7 @@ class Customers extends Controller {
 	
 		$shopcustomers_model = $this->loadModel ( 'ShopCustomers' );
 	
-		$result->Data = $shopcustomers_model->update ($_SESSION["user_shop"], $_POST ['customer_id'],CustomerFromType::GOGOCustomer,CustomerType::ChanceCustomer,time() );
+		$result->Data = $shopcustomers_model->update ($_SESSION["fuser_shop"], $_POST ['customer_id'],CustomerFromType::GOGOCustomer,CustomerType::ChanceCustomer,time() );
 		$result->Error = ErrorType::Success;
 	
 		print  json_encode ( $result );
@@ -290,7 +290,7 @@ class Customers extends Controller {
 	
 		$result = new PageDataResult ();
 	
-		if (! isset ( $_SESSION["user_shop"] ) or empty ( $_SESSION["user_shop"] )) {
+		if (! isset ( $_SESSION["fuser_shop"] ) or empty ( $_SESSION["fuser_shop"] )) {
 			$result->Error = ErrorType::Unlogin;
 			print json_encode ( $result );
 			return ;
@@ -308,7 +308,7 @@ class Customers extends Controller {
 	
 		$shopcustomers_model = $this->loadModel ( 'ShopCustomers' );
 	
-		$result = $shopcustomers_model->getCustomerCount ($_SESSION["user_shop"], $_POST ['stime'], $_POST ['etime'] );
+		$result = $shopcustomers_model->getCustomerCount ($_SESSION["fuser_shop"], $_POST ['stime'], $_POST ['etime'] );
 		$result->Error = ErrorType::Success;
 	
 		print  json_encode ( $result );

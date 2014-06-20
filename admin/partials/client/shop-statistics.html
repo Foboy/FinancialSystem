@@ -1,65 +1,79 @@
-
-               <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <h1>
-                        商家统计数据
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <h1>商家统计数据
                         <small></small>
-                    </h1>
-                   
-                </div>
+    </h1>
 
-                <!-- Main content -->
-                <div  class="content">
+</div>
+
+<!-- Main content -->
+<div class="content">
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-6">
-                            <!-- Line chart -->
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <h3 class="box-title">Line Chart</h3>
+                        <div class="col-sm-2">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>消费趋势图
+                        </div>
+                        <div class="col-sm-5 pull-right padding_rightnull">
+                            <div class="form-horizontal">
+                                <label class="control-label col-sm-5 lable-sm padding_rightnull">自定义时间：</label>
+                                <div class="input-group col-sm-7 padding_leftnull">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input id="reservation" class="form-control input-sm pull-right ng-pristine ng-valid" type="text">
                                 </div>
-                                <div class="box-body">
-                                    <div id="line-chart" style="height: 300px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 300px;" width="515" height="300"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 22px; text-align: center;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 93px; text-align: center;">2</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 165px; text-align: center;">4</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 236px; text-align: center;">6</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 308px; text-align: center;">8</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 376px; text-align: center;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 64px; top: 282px; left: 447px; text-align: center;">12</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 269px; left: 1px; text-align: right;">-1.5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 224px; left: 1px; text-align: right;">-1.0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 179px; left: 1px; text-align: right;">-0.5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 135px; left: 5px; text-align: right;">0.0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 90px; left: 5px; text-align: right;">0.5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 45px; left: 5px; text-align: right;">1.0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 5px; text-align: right;">1.5</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 300px;" width="515" height="300"></canvas></div>
-                                </div><!-- /.box-body-->
-                            </div><!-- /.box -->
-
-                            <!-- Area chart -->
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <h3 class="box-title">Full Width Area Chart</h3>
-                                </div>
-                                <div class="box-body">
-                                    <div id="area-chart" style="height: 338px; padding: 0px; position: relative;" class="full-width-chart"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 553px; height: 338px;" width="553" height="338"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 553px; height: 338px;" width="553" height="338"></canvas></div>
-                                </div><!-- /.box-body-->
-                            </div><!-- /.box -->
-
-                        </div><!-- /.col -->
-
-                        <div class="col-md-6">
-                            <!-- Bar chart -->
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <h3 class="box-title">Bar Chart</h3>
-                                </div>
-                                <div class="box-body">
-                                    <div id="bar-chart" style="height: 300px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 300px;" width="515" height="300"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 85px; top: 282px; left: 23px; text-align: center;">January</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 85px; top: 282px; left: 107px; text-align: center;">February</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 85px; top: 282px; left: 199px; text-align: center;">March</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 85px; top: 282px; left: 288px; text-align: center;">April</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 85px; top: 282px; left: 375px; text-align: center;">May</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 85px; top: 282px; left: 458px; text-align: center;">June</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 269px; left: 7px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 202px; left: 7px; text-align: right;">5</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 135px; left: 1px; text-align: right;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 68px; left: 1px; text-align: right;">15</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 1px; text-align: right;">20</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 300px;" width="515" height="300"></canvas></div>
-                                </div><!-- /.box-body-->
-                            </div><!-- /.box -->
-
-                            <!-- Donut chart -->
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <h3 class="box-title">Donut Chart</h3>
-                                </div>
-                                <div class="box-body">
-                                    <div id="donut-chart" style="height: 300px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 300px;" width="515" height="300"></canvas><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 300px;" width="515" height="300"></canvas><span class="pieLabel" id="pieLabel0" style="position: absolute; top: 71px; left: 315.5px;"><div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">Series2<br>30%</div></span><span class="pieLabel" id="pieLabel1" style="position: absolute; top: 211px; left: 293.5px;"><div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">Series3<br>20%</div></span><span class="pieLabel" id="pieLabel2" style="position: absolute; top: 130px; left: 134.5px;"><div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">Series4<br>50%</div></span></div>
-                                </div><!-- /.box-body-->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
+                            </div>
+                        </div>
                     </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-line-chart"></div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            收银员销售情况
+                        </div>
+                        <div class="col-sm-8 pull-right padding_rightnull">
+                            <div class="form-horizontal">
+                                <label class="control-label col-sm-5 padding_rightnull">自定义时间：</label>
+                                <div class="input-group col-sm-7 padding_leftnull">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input id="CashierTimeControl" class="form-control input-sm pull-right ng-pristine ng-valid" type="text">
+                                </div>
+                            </div>
+                        </div>
 
-                </div><!-- /.content -->
-               
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-bar-chart"></div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.content -->

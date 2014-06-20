@@ -12,19 +12,14 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
          .state('home', {
              url: '/home',
              templateUrl: 'partials/home.html',
-             controller: function () { 
-                    setTimeout(function() {
-
-                        //loadflotpanel();
-                    }, 1000);
-             }
+                        controller: DataStatisticsCtrl
          })
          .state('client', { url: '/client*path', templateUrl: 'partials/client.html', controller: ClientMainCtrl })
          .state('lakala', { url: '/lakala*path', templateUrl: 'partials/lakala.html', controller: LakalaCtrl })
          .state('shop', { url: '/shop*path', templateUrl: 'partials/client/shop.html', controller: ShopCtrl })
          .state('sp_statistics', { url: '/sp_statistics*path', templateUrl: 'partials/client/shop-statistics.html', controller: ShopStatisticsCtrl })
          .state('customer', { url: '/customer*path', templateUrl: 'partials/customer.html', controller: CustomerCtrl })
-         .state('cus_statistics', { url: '/cus_statistics*path', templateUrl: 'partials/customer/customer-statistics.html', controller: CustomerStatisticsCtrl })
+         .state('cus_statistics', { url: '/cus_statistics*path', templateUrl: 'partials/customer/customer-statistics.html', controller: CustomerSpendingStatisticsCtrl })
          .state('total_statistics', { url: '/total_statistics*path', templateUrl: 'partials/total_statistics.htm', controller: TotalStatisticsCtrl })
          .state('splist', { url: '/splist*path', templateUrl: 'partials/client/shoplist.html', controller: ShopListCtrl })
          .state('permissions', { url: '/permissions*path', templateUrl: 'partials/authoritymanagement.html', controller: AcountCtrl });
@@ -53,6 +48,15 @@ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRo
       }]);;
 
 function MainCtrl($scope, $routeParams, $http, $location, $filter, $resturls) {
+	   $scope.LoginOut = function () {
+	        $http.post($resturls["LoginOut"], {}).success(function (result) {
+	            if (result.Error == 0) {
+	                window.location.href = "login.html";
+	            } else {
+	                $.scojs_message('服务器忙，请稍后重试', $.scojs_message.TYPE_ERROR);
+	            }
+	        })
+	    };
     $scope.currentuser = null;
     //登录
     $http.post($resturls["GetCurrentUser"], {}).success(function (result) {
@@ -65,16 +69,19 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter, $resturls) {
     
     // unix时间戳转化为 eg:'2014-04-08'
     $scope.timestamptostr = function (timestamp) {
+    	timestamp=timestamp+"";
         if (timestamp.indexOf('-') == -1) {
             var month = 0;
             var day = 0;
             if (timestamp) {
                 var unixTimestamp = new Date(timestamp * 1000);
+                month = (unixTimestamp.getMonth() + 1);
+                day =  unixTimestamp.getDate();
                 if (unixTimestamp.getMonth() < 9) {
-                    month = '0' + (unixTimestamp.getMonth() + 1);
-                }
-                if (unixTimestamp.getDay() < 9) {
-                    day = '0' + unixTimestamp.getDay();
+                    month = "0" + month;
+                } 
+                if (unixTimestamp.getDate() < 9) {
+                    day = '0' + day;
                 }
                 var str = unixTimestamp.getFullYear() + '-' + month + '-' + day;
                 return str;
@@ -102,5 +109,20 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter, $resturls) {
             temp = temp.substr(0, temp.length - str.length);
         }
         return temp;
+    }
+    //转化手机号 ey:13458680566 为 134*****566
+    $scope.ModifiedPhoneNum = function (str) {
+        if (str) {
+            if (str.length == 11) {
+                var mphone = str.substr(3, 5);
+                var phone = str.replace(mphone, "*****");
+                return phone;
+            }
+            else {
+                return str;
+            }
+        } else {
+            return '';
+        }
     }
 }

@@ -76,7 +76,7 @@ class PHP2EXCEL {
 // 		header ( "Content-Disposition: attachment; filename=\"$fileName\"" );
 // 		header ( 'Cache-Control: max-age=0' );
 		
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8');
 		header ( "Content-Disposition: attachment; filename=\"$fileName\"" );
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed

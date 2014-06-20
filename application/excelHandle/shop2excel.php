@@ -15,4 +15,4 @@ $headArr=array(
 $bills_model = new BillsModel(new Database());
 $toexcel=new PHP2EXCEL();
 //printf(json_encode($bills_model->excelDownloadQuery()));
-$toexcel->getExcel('商家统计记录', $headArr, $bills_model->excelDownloadQuery());
+$toexcel->getExcel('shop', $headArr, $bills_model->excelDownloadQuery());

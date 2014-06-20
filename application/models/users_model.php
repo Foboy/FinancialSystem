@@ -31,7 +31,7 @@ class UsersModel {
 		$result = new PageDataResult ();
 		$lastpagenum = $pageindex * $pagesize;
 		
-		$sql = " select id,name,shop_id,type,account,password,last_login,state,faileds,last_failed,token,create_time from Crm_Users where  ( name = :name or :name=0 )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 )  and  ( account = :account or :account='' )  and  ( password = :password or :password='' )  and  ( last_login = :last_login or :last_login=0 )  and  ( state = :state or :state=0 )  and  ( faileds = :faileds or :faileds=0 )  and  ( last_failed = :last_failed or :last_failed=0 )  and  ( token = :token or :token='' )  and  ( create_time = :create_time or :create_time=0 )  limit $lastpagenum,$pagesize";
+		$sql = " select id,name,shop_id,type,account,password,last_login,state,faileds,last_failed,token,create_time from Crm_Users where  ( name = :name or :name=0 )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 )  and  ( account = :account or :account='' )  and  ( password = :password or :password='' )  and  ( last_login = :last_login or :last_login=0 )  and  ( state = :state or :state=0 )  and  ( faileds = :faileds or :faileds=0 )  and  ( last_failed = :last_failed or :last_failed=0 )  and  ( token = :token or :token='' )  and  ( create_time = :create_time or :create_time=0 ) order by create_time desc limit $lastpagenum,$pagesize";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 				':name' => $name,
@@ -61,7 +61,7 @@ class UsersModel {
 	public function search($name, $shop_id, $type) {
 		$result = new DataResult ();
 		
-		$query = $this->db->prepare ( "SELECT * FROM Crm_Users where  ( name = :name or :name='' )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 )   " );
+		$query = $this->db->prepare ( "SELECT * FROM Crm_Users where  ( name = :name or :name='' )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 ) order by create_time desc  " );
 		$query->execute ( array (
 				':name' => $name,
 				':shop_id' => $shop_id,
@@ -137,11 +137,11 @@ class UsersModel {
 		
 		// we do negative-first checks here
 		if (! isset ( $_POST ['user_name'] ) or empty ( $_POST ['user_name'] )) {
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_USERNAME_FIELD_EMPTY;
+			$_SESSION ["feedback_negative"] = FEEDBACK_USERNAME_FIELD_EMPTY;
 			return false;
 		}
 		if (! isset ( $_POST ['user_password'] ) or empty ( $_POST ['user_password'] )) {
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_FIELD_EMPTY;
+			$_SESSION ["feedback_negative"] = FEEDBACK_PASSWORD_FIELD_EMPTY;
 			return false;
 		}
 		
@@ -169,12 +169,12 @@ class UsersModel {
 				':user_name' => $_POST ['user_name'] 
 		) );
 		$count = $sth->rowCount ();
-		
+		//$_SESSION ["feedback_negative"] ="查询用户数量".$count;
 		// if there's NOT one result
 		if ($count <= 0) {
 			// was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
 			// to prevent potential attackers showing if the user exists
-			//$_SESSION ["feedback_negative"] [] = FEEDBACK_LOGIN_FAILED;
+			$_SESSION ["feedback_negative"] = "用户不存在";
 			return false;
 		}
 		
@@ -183,7 +183,7 @@ class UsersModel {
 		
 		// block login attempt if somebody has already failed 3 times and the last login attempt is less than 30sec ago
 		if (($result->Faileds >= 3) and ($result->Last_Failed > (time () - 30))) {
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_WRONG_3_TIMES;
+			$_SESSION ["feedback_negative"] = FEEDBACK_PASSWORD_WRONG_3_TIMES;
 			return false;
 		}
 		
@@ -191,17 +191,17 @@ class UsersModel {
 		if (password_verify ( $_POST ['user_password'], $result->Password )) {
 			
 			if ($result->State != UserState::Active) {
-				$_SESSION ["feedback_negative"] [] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
+				$_SESSION ["feedback_negative"] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
 				return false;
 			}
 			
 			// login process, write the user data into session
 			Session::init ();
-			Session::set ( 'user_logged_in', true );
-			Session::set ( 'user_id', $result->ID );
-			Session::set ( 'user_name', $result->Account );
-			Session::set ( 'user_shop', $result->Shop_ID );
-			Session::set ( 'user_type', $result->Type );
+			Session::set ( 'fuser_logged_in', true );
+			Session::set ( 'fuser_id', $result->ID );
+			Session::set ( 'fuser_name', $result->Account );
+			Session::set ( 'fuser_shop', $result->Shop_ID );
+			Session::set ( 'fuser_type', $result->Type );
 			// put native avatar path into session
 			// Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
@@ -264,7 +264,7 @@ class UsersModel {
 					':user_last_failed_login' => time () 
 			) );
 			// feedback message
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_WRONG;
+			$_SESSION ["feedback_negative"] = FEEDBACK_PASSWORD_WRONG;
 			return false;
 		}
 		
@@ -325,11 +325,11 @@ class UsersModel {
 			// TODO: this block is same/similar to the one from login(), maybe we should put this in a method
 			// write data into session
 			Session::init ();
-			Session::set ( 'user_logged_in', true );
-			Session::set ( 'user_id', $result->ID );
-			Session::set ( 'user_name', $result->Account );
-			Session::set ( 'user_shop', $result->Shop_ID );
-			Session::set ( 'user_type', $result->Type );
+			Session::set ( 'fuser_logged_in', true );
+			Session::set ( 'fuser_id', $result->ID );
+			Session::set ( 'fuser_name', $result->Account );
+			Session::set ( 'fuser_shop', $result->Shop_ID );
+			Session::set ( 'fuser_type', $result->Type );
 			// put native avatar path into session
 			// Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
@@ -416,7 +416,7 @@ class UsersModel {
 			
 			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_FIELD_EMPTY;
 		} 
-		elseif (empty ( $_SESSION["user_shop"] )) {
+		elseif (empty ( $_SESSION["fuser_shop"] )) {
 			
 			$_SESSION ["feedback_negative"] [] = FEEDBACK_SHOPID_FIELD_EMPTY;
 		} elseif ($_POST ['user_password_new'] !== $_POST ['user_password_repeat']) {
@@ -437,7 +437,7 @@ class UsersModel {
 			$user_name = strip_tags ( $_POST ['user_name'] );
 			$user_account = strip_tags ( $_POST ['user_account'] );
 			$user_type = intval ( $_POST ['user_type'] );
-			$shop_id = intval ( $_SESSION["user_shop"] );
+			$shop_id = intval ( $_SESSION["fuser_shop"] );
 			
 			// crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
 			// hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,

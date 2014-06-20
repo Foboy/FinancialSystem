@@ -1,5 +1,10 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 include_path=0;/financialsystem
 phpVersion=php5.3
+=======
+include_path=0;/financial
+phpVersion=php5.5
+>>>>>>> 449f5462fabfcb92f30b4ec1673b80fbe918fc71
 useShortTags=true
 use_asp_tags_as_php=false

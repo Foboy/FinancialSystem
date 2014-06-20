@@ -244,6 +244,17 @@ FROM
 		$result->Data = $objects;
 		return $result;
 	}
+	//根据ID获取shops
+	public function SearchArea() {
+		$result = new DataResult ();
+	
+		$query = $this->db->prepare ( "SELECT id,name FROM Crm_area_district " );
+		$query->execute ();
+	
+		$objects = $query->fetchAll();
+		$result->Data = $objects;
+		return $result;
+	}
 }
 
 ?>

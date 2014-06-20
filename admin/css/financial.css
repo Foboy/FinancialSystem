@@ -94,3 +94,15 @@ a {
 .ng-valid.ng-dirty {
 	border-color: #1ABC9C;
 }
+
+/*Flot Chart Containers*/
+
+ .flot-chart {
+    display: block;
+    height: 400px;
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
