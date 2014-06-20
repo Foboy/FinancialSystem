@@ -38,7 +38,7 @@ class user extends Controller
     		$result->Error = ErrorType::Success;
     		}
     	} else {
-    		$result->ErrorMessage=FEEDBACK_LOGIN_FAILED;
+    		$result->ErrorMessage=$_SESSION ["feedback_negative"];
     		$result->Error = ErrorType::LoginFailed;
     		$result->ExMessage=$_SESSION;
     	}

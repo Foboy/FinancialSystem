@@ -31,7 +31,7 @@ class UsersModel {
 		$result = new PageDataResult ();
 		$lastpagenum = $pageindex * $pagesize;
 		
-		$sql = " select id,name,shop_id,type,account,password,last_login,state,faileds,last_failed,token,create_time from Crm_Users where  ( name = :name or :name=0 )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 )  and  ( account = :account or :account='' )  and  ( password = :password or :password='' )  and  ( last_login = :last_login or :last_login=0 )  and  ( state = :state or :state=0 )  and  ( faileds = :faileds or :faileds=0 )  and  ( last_failed = :last_failed or :last_failed=0 )  and  ( token = :token or :token='' )  and  ( create_time = :create_time or :create_time=0 )  limit $lastpagenum,$pagesize";
+		$sql = " select id,name,shop_id,type,account,password,last_login,state,faileds,last_failed,token,create_time from Crm_Users where  ( name = :name or :name=0 )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 )  and  ( account = :account or :account='' )  and  ( password = :password or :password='' )  and  ( last_login = :last_login or :last_login=0 )  and  ( state = :state or :state=0 )  and  ( faileds = :faileds or :faileds=0 )  and  ( last_failed = :last_failed or :last_failed=0 )  and  ( token = :token or :token='' )  and  ( create_time = :create_time or :create_time=0 ) order by create_time desc limit $lastpagenum,$pagesize";
 		$query = $this->db->prepare ( $sql );
 		$query->execute ( array (
 				':name' => $name,
@@ -61,7 +61,7 @@ class UsersModel {
 	public function search($name, $shop_id, $type) {
 		$result = new DataResult ();
 		
-		$query = $this->db->prepare ( "SELECT * FROM Crm_Users where  ( name = :name or :name='' )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 )   " );
+		$query = $this->db->prepare ( "SELECT * FROM Crm_Users where  ( name = :name or :name='' )  and  ( shop_id = :shop_id or :shop_id=0 )  and  ( type = :type or :type=0 ) order by create_time desc  " );
 		$query->execute ( array (
 				':name' => $name,
 				':shop_id' => $shop_id,
@@ -137,11 +137,11 @@ class UsersModel {
 		
 		// we do negative-first checks here
 		if (! isset ( $_POST ['user_name'] ) or empty ( $_POST ['user_name'] )) {
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_USERNAME_FIELD_EMPTY;
+			$_SESSION ["feedback_negative"] = FEEDBACK_USERNAME_FIELD_EMPTY;
 			return false;
 		}
 		if (! isset ( $_POST ['user_password'] ) or empty ( $_POST ['user_password'] )) {
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_FIELD_EMPTY;
+			$_SESSION ["feedback_negative"] = FEEDBACK_PASSWORD_FIELD_EMPTY;
 			return false;
 		}
 		
@@ -183,7 +183,7 @@ class UsersModel {
 		
 		// block login attempt if somebody has already failed 3 times and the last login attempt is less than 30sec ago
 		if (($result->Faileds >= 3) and ($result->Last_Failed > (time () - 30))) {
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_WRONG_3_TIMES;
+			$_SESSION ["feedback_negative"] = FEEDBACK_PASSWORD_WRONG_3_TIMES;
 			return false;
 		}
 		
@@ -191,7 +191,7 @@ class UsersModel {
 		if (password_verify ( $_POST ['user_password'], $result->Password )) {
 			
 			if ($result->State != UserState::Active) {
-				$_SESSION ["feedback_negative"] [] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
+				$_SESSION ["feedback_negative"] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
 				return false;
 			}
 			
@@ -264,7 +264,7 @@ class UsersModel {
 					':user_last_failed_login' => time () 
 			) );
 			// feedback message
-			$_SESSION ["feedback_negative"] [] = FEEDBACK_PASSWORD_WRONG;
+			$_SESSION ["feedback_negative"] = FEEDBACK_PASSWORD_WRONG;
 			return false;
 		}
 		
