@@ -5,6 +5,6 @@
 
 
 
-define('SURL', 'FinancialSystem/');
-define('URL', 'FinancialSystem/index.php?url=');
+define('SURL', '/');
+define('URL', '/index.php?url=');
 
