@@ -29,8 +29,10 @@ class Application
 
         // check for controller: is the url_controller NOT empty ?
         if ($this->url_controller) {
+        	
             // check for controller: does such a controller exist ?
             if (file_exists(CONTROLLER_PATH . $this->url_controller . '.php')) {
+            	print $this->url_controller;
                 // if so, then load this file and create this controller
                 // example: if controller would be "car", then this line would translate into: $this->car = new car();
                 require CONTROLLER_PATH . $this->url_controller . '.php';
@@ -62,6 +64,8 @@ class Application
             // obviously mistyped controller name, therefore show 404
             } else {
                 // redirect user to error page (there's a controller for that)
+                //print $this->url_controller;
+               //print_r($_GET['url']);
                 header('location: ' . URL . 'error/index');
             }
         // if url_controller is empty, simply show the main page (index/index)
