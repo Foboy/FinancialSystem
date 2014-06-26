@@ -6,10 +6,11 @@ function DataStatisticsCtrl($scope, $http, $location, $routeParams, $resturls) {
 	$scope.newcustomers=0;
 	 $http.post($resturls["getHeaderNumber"],{}).success(function (result) {
          if (result.Error == 0) {
-        		$scope.billnum=result.Data.billnum;
-        		$scope.avgsrate=result.Data.avgsrate;
-        		$scope.newshops=result.Data.newshops;
-        		$scope.newcustomers=result.Data.newcustomers;
+
+        		$scope.billnum=result.Data[0].billnum;
+        		$scope.sumbill=result.Data[0].sumbill;
+        		$scope.shopsnum=result.Data[0].shopsnum;
+        		$scope.customersnum=result.Data[0].customersnum;
              
          } else {
              $scope.showerror = true;
