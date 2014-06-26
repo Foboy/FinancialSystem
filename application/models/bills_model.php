@@ -328,6 +328,21 @@ FROM
 		$objects = $query->fetchAll ();
 		return  $objects;
 	}
+	//获取首页统计数据
+	public function searchIndexNum() {
+		$result = new DataResult ();
+	
+		$query = $this->db->prepare ( "select (SELECT count(*) FROM Crm_Bills) billnum,(
+SELECT sum(cs.cash) FROM Crm_Bills cs) sumbill,(
+select count(*) from Crm_Shops) shopsnum,(
+SELECT count(distinct Customer_ID) FROM Crm_Shop_Customers) customersnum
+from dual; " );
+		$query->execute ();
+		$objects = $query->fetchAll ();
+	
+		$result->Data = $objects;
+		return $result;
+	}
   
 }
 
